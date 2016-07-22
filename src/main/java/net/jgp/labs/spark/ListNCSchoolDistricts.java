@@ -14,7 +14,7 @@ import net.jgp.commons.download.DownloadManager;
  * @author jgp
  *
  */
-public class FirstJob {
+public class ListNCSchoolDistricts {
 
 	/**
 	 * @param args
@@ -24,21 +24,15 @@ public class FirstJob {
 				"https://opendurham.nc.gov/explore/dataset/north-carolina-school-performance-data/download/?format=json&timezone=America/New_York");
 		System.out.println("File " + filename + " downloaded");
 
-		SparkConf conf = new SparkConf().setAppName("myFirstJob").setMaster("spark://10.0.100.120:7077");
-		// SparkConf conf = new
-		// SparkConf().setAppName("myFirstJob").setMaster("local[*]");
+		SparkConf conf = new SparkConf().setAppName("NC Schools").setMaster("local");
 		JavaSparkContext javaSparkContext = new JavaSparkContext(conf);
-		javaSparkContext.setLogLevel("WARN");
 		SQLContext sqlContext = new SQLContext(javaSparkContext);
-
-		System.out.println("Hello, Remote Spark v." + javaSparkContext.version());
 
 		String fileToAnalyze = "/Pool/" + filename;
 		System.out.println("File to analyze: " + fileToAnalyze);
 
 		DataFrame df;
 		df = sqlContext.read().option("dateFormat", "yyyy-mm-dd").json(fileToAnalyze);
-		// .json("./src/main/resources/north-carolina-school-performance-data.json");
 		df = df.withColumn("district", df.col("fields.district"));
 		df = df.groupBy("district").count().orderBy(df.col("district"));
 		df.show(150);

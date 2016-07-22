@@ -25,10 +25,8 @@ public class ArrayToDataFrame {
 		List<Integer> data = Arrays.asList(l);
 		System.out.println(data);
 		DataFrame df = sqlContext.createDataFrame(data, IntegerType.class);
+		
+		// TODO this is display an empty array for now
 		df.show();
 	}
 }
-
-// StructType schema = DataTypes.createStructType(
-// new StructField[] { DataTypes.createStructField("val", DataTypes.IntegerType,
-// false) });

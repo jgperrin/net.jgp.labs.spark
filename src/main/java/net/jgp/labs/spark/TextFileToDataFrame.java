@@ -5,11 +5,11 @@ import org.apache.spark.SparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
 
-public class FirstTextFile {
+public class TextFileToDataFrame {
 
 	public static void main(String[] args) {
 		System.out.println("Working directory = " + System.getProperty("user.dir"));
-		FirstTextFile app = new FirstTextFile();
+		TextFileToDataFrame app = new TextFileToDataFrame();
 		app.start();
 	}
 
