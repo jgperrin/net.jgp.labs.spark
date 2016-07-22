@@ -10,8 +10,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -19,19 +19,24 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_2.10</artifactId>
+			<artifactId>spark-core_2.11</artifactId>
 			<version>1.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-sql_2.10</artifactId>
+			<artifactId>spark-sql_2.11</artifactId>
 			<version>1.6.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.databricks</groupId>
-			<artifactId>spark-csv_2.10</artifactId>
+			<artifactId>spark-csv_2.11</artifactId>
 			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-mllib_2.11</artifactId>
+			<version>1.6.2</version>
 		</dependency>
 	</dependencies>
 </project>
