@@ -6,8 +6,13 @@ import org.apache.spark.ml.classification.LogisticRegression;
 import org.apache.spark.ml.classification.LogisticRegressionModel;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.api.java.UDF1;
+import org.apache.spark.sql.types.DataTypes;
+import static org.apache.spark.sql.functions.*;
 
-public class SimplePredictionFromTextFile {
+import java.io.Serializable;
+
+public class SimplePredictionFromTextFile implements Serializable {
 
 	public static void main(String[] args) {
 		System.out.println("Working directory = " + System.getProperty("user.dir"));
@@ -20,11 +25,18 @@ public class SimplePredictionFromTextFile {
 		SparkContext sc = new SparkContext(conf);
 		SQLContext sqlContext = new SQLContext(sc);
 
+		sqlContext.udf().register("stringLengthTest", new UDF1<Integer, Integer>() {
+			@Override
+			public Integer call(Integer x) {
+				return x * 2;
+			}
+		}, DataTypes.IntegerType);
+
 		String filename = "data/tuple-data-file.csv";
 		DataFrame df = sqlContext.read().format("com.databricks.spark.csv").option("inferSchema", "true")
 				.option("header", "false").load(filename);
 		df = df.withColumn("label", df.col("C0")).drop("C0");
-		df = df.withColumn("features", df.col("C1")).drop("C1");
+		df = df.withColumn("x2", callUDF("stringLengthTest", df.col("C1").cast(DataTypes.IntegerType))).drop("C1");
 		df.show();
 		LogisticRegression lr = new LogisticRegression().setMaxIter(10);
 
@@ -37,4 +49,8 @@ public class SimplePredictionFromTextFile {
 		// Given a dataset, predict each point's label, and show the results.
 		model.transform(df).show();
 	}
+}
+
+class UDF {
+
 }
