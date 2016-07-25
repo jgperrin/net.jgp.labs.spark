@@ -56,7 +56,7 @@ public class SimplePredictionFromTextFile implements Serializable {
 		df.show();
 
 		LinearRegression lr = new LinearRegression().setMaxIter(20);//.setRegParam(1).setElasticNetParam(1);
-		;
+		
 
 		// Fit the model to the data.
 		LinearRegressionModel model = lr.fit(df);
