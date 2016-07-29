@@ -1,13 +1,10 @@
 /**
- * First remote submission.
+ * NC schools by school district analysis.
  */
 package net.jgp.labs.spark;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import net.jgp.commons.download.DownloadManager;
@@ -35,6 +32,6 @@ public class ListNCSchoolDistricts {
 		df = spark.read().option("dateFormat", "yyyy-mm-dd").json(fileToAnalyze);
 		df = df.withColumn("district", df.col("fields.district"));
 		df = df.groupBy("district").count().orderBy(df.col("district"));
-		df.show(150);
+		df.show(150, false);
 	}
 }

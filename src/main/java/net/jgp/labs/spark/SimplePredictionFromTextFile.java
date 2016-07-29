@@ -2,20 +2,15 @@ package net.jgp.labs.spark;
 
 import static org.apache.spark.sql.functions.callUDF;
 
-import java.io.Serializable;
-
-import org.apache.spark.SparkConf;
-import org.apache.spark.SparkContext;
-import org.apache.spark.ml.classification.LogisticRegression;
-import org.apache.spark.ml.classification.LogisticRegressionModel;
+import org.apache.spark.ml.linalg.Vector;
+import org.apache.spark.ml.linalg.VectorUDT;
+import org.apache.spark.ml.linalg.Vectors;
 import org.apache.spark.ml.regression.LinearRegression;
 import org.apache.spark.ml.regression.LinearRegressionModel;
 import org.apache.spark.ml.regression.LinearRegressionTrainingSummary;
-import org.apache.spark.mllib.linalg.Vector;
-import org.apache.spark.mllib.linalg.VectorUDT;
-import org.apache.spark.mllib.linalg.Vectors;
-import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.Metadata;
 import org.apache.spark.sql.types.StructField;
@@ -23,7 +18,7 @@ import org.apache.spark.sql.types.StructType;
 
 import net.jgp.labs.spark.udf.VectorBuilder;
 
-public class SimplePredictionFromTextFile implements Serializable {
+public class SimplePredictionFromTextFile  {
 
 	public static void main(String[] args) {
 		System.out.println("Working directory = " + System.getProperty("user.dir"));
@@ -32,22 +27,20 @@ public class SimplePredictionFromTextFile implements Serializable {
 	}
 
 	private void start() {
-		SparkConf conf = new SparkConf().setAppName("Simple prediction from Text File").setMaster("local");
-		SparkContext sc = new SparkContext(conf);
-		SQLContext sqlContext = new SQLContext(sc);
+		SparkSession spark = SparkSession.builder().appName("Simple prediction from Text File").master("local").getOrCreate();
 
-		sqlContext.udf().register("vectorBuilder", new VectorBuilder(), new VectorUDT());
+		spark.udf().register("vectorBuilder", new VectorBuilder(), new VectorUDT());
 
 		String filename = "data/tuple-data-file.csv";
 		StructType schema = new StructType(
-				new StructField[] { new StructField("C0", DataTypes.DoubleType, false, Metadata.empty()),
-						new StructField("C1", DataTypes.DoubleType, false, Metadata.empty()),
+				new StructField[] { new StructField("_c0", DataTypes.DoubleType, false, Metadata.empty()),
+						new StructField("_c1", DataTypes.DoubleType, false, Metadata.empty()),
 						new StructField("features", new VectorUDT(), true, Metadata.empty()), });
 
-		DataFrame df = sqlContext.read().format("com.databricks.spark.csv").schema(schema).option("header", "false")
+		Dataset<Row> df = spark.read().format("csv").schema(schema).option("header", "false")
 				.load(filename);
-		df = df.withColumn("valuefeatures", df.col("C0")).drop("C0");
-		df = df.withColumn("label", df.col("C1")).drop("C1");
+		df = df.withColumn("valuefeatures", df.col("_c0")).drop("_c0");
+		df = df.withColumn("label", df.col("_c1")).drop("_c1");
 		df.printSchema();
 		// df.show();
 
@@ -60,9 +53,6 @@ public class SimplePredictionFromTextFile implements Serializable {
 
 		// Fit the model to the data.
 		LinearRegressionModel model = lr.fit(df);
-
-		// Inspect the model: get the feature weights.
-		Vector weights = model.weights();
 
 		// Given a dataset, predict each point's label, and show the results.
 		model.transform(df).show();
