@@ -2,13 +2,10 @@ package net.jgp.labs.spark;
 
 import static org.apache.spark.sql.functions.callUDF;
 
-import java.io.Serializable;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
-import org.apache.spark.sql.api.java.UDF1;
 import org.apache.spark.sql.types.DataTypes;
 
 import net.jgp.labs.spark.udf.Multiplier2;
