@@ -1,9 +1,8 @@
 package net.jgp.labs.spark;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.SparkContext;
-import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
 
 public class TextFileToDataFrame {
 
@@ -14,12 +13,13 @@ public class TextFileToDataFrame {
 	}
 
 	private void start() {
-		SparkConf conf = new SparkConf().setAppName("DataFrame from Text File").setMaster("local");
-		SparkContext sc = new SparkContext(conf);
-		SQLContext sqlContext = new SQLContext(sc);
+		SparkSession spark = SparkSession.builder()
+				.appName("DataFrame from Text File")
+				.master("local[*]")
+				.getOrCreate();
 
 		String filename = "data/simple-data-file.txt";
-		DataFrame df = sqlContext.read().text(filename);
+		Dataset<Row> df = spark.read().text(filename);
 		df.show();
 	}
 }

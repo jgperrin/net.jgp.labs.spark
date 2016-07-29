@@ -3,7 +3,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.jgp.labs</groupId>
 	<artifactId>spark</artifactId>
-	<version>0.0.1</version>
 	<build>
 		<plugins>
 			<plugin>
@@ -19,24 +18,18 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_2.11</artifactId>
-			<version>1.6.2</version>
+			<artifactId>spark-core_2.10</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-sql_2.11</artifactId>
-			<version>1.6.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.databricks</groupId>
-			<artifactId>spark-csv_2.11</artifactId>
-			<version>1.4.0</version>
+			<artifactId>spark-sql_2.10</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-mllib_2.11</artifactId>
-			<version>1.6.2</version>
+			<artifactId>spark-mllib_2.10</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -44,4 +37,5 @@
 			<version>6.0.3</version>
 		</dependency>
 	</dependencies>
+	<version>2.0.0</version>
 </project>

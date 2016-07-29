@@ -3,14 +3,12 @@
  */
 package net.jgp.labs.spark;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.SparkContext;
+import org.apache.spark.sql.SparkSession;
 
 public class ConnectRemotely {
 
 	public static void main(String[] args) {
-		SparkConf conf = new SparkConf().setAppName("myApp").setMaster("spark://10.0.100.120:7077");
-		SparkContext sc = new SparkContext(conf);
-		System.out.println("Hello, Remote Spark v." + sc.version());
+		SparkSession spark = SparkSession.builder().appName("myApp").master("spark://10.0.100.120:7077").getOrCreate();
+		System.out.println("Hello, Spark v." + spark.version());
 	}
 }
