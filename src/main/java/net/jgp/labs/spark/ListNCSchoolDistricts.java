@@ -6,7 +6,9 @@ package net.jgp.labs.spark;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.SparkSession;
 
 import net.jgp.commons.download.DownloadManager;
 
@@ -24,15 +26,13 @@ public class ListNCSchoolDistricts {
 				"https://opendurham.nc.gov/explore/dataset/north-carolina-school-performance-data/download/?format=json&timezone=America/New_York");
 		System.out.println("File " + filename + " downloaded");
 
-		SparkConf conf = new SparkConf().setAppName("NC Schools").setMaster("local");
-		JavaSparkContext javaSparkContext = new JavaSparkContext(conf);
-		SQLContext sqlContext = new SQLContext(javaSparkContext);
+		SparkSession spark = SparkSession.builder().appName("NC Schools").master("local").getOrCreate();
 
 		String fileToAnalyze = "/Pool/" + filename;
 		System.out.println("File to analyze: " + fileToAnalyze);
 
-		DataFrame df;
-		df = sqlContext.read().option("dateFormat", "yyyy-mm-dd").json(fileToAnalyze);
+		Dataset<Row> df;
+		df = spark.read().option("dateFormat", "yyyy-mm-dd").json(fileToAnalyze);
 		df = df.withColumn("district", df.col("fields.district"));
 		df = df.groupBy("district").count().orderBy(df.col("district"));
 		df.show(150);
