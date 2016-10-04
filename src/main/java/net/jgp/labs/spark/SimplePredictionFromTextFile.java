@@ -42,14 +42,12 @@ public class SimplePredictionFromTextFile  {
 		df = df.withColumn("valuefeatures", df.col("_c0")).drop("_c0");
 		df = df.withColumn("label", df.col("_c1")).drop("_c1");
 		df.printSchema();
-		// df.show();
 
 		df = df.withColumn("features", callUDF("vectorBuilder", df.col("valuefeatures")));
 		df.printSchema();
 		df.show();
 
 		LinearRegression lr = new LinearRegression().setMaxIter(20);//.setRegParam(1).setElasticNetParam(1);
-		
 
 		// Fit the model to the data.
 		LinearRegressionModel model = lr.fit(df);
@@ -70,12 +68,12 @@ public class SimplePredictionFromTextFile  {
 		System.out.println("Regression parameter: " + regParam);
 		double tol = model.getTol();
 		System.out.println("Tol: " + tol);
-		Double val = 8.0;
-		Vector features = Vectors.dense(val);
+		Double feature = 7.0;
+		Vector features = Vectors.dense(feature);
 		double p = model.predict(features);
-		System.out.println("Prediction for " + val + " is " + p);
-
+		
+		System.out.println("Prediction for feature " + feature + " is " + p);
 		System.out.println(8 * regParam + intersect);
-
 	}
 }
+
