@@ -36,6 +36,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.databricks</groupId>
+			<artifactId>spark-xml_2.10</artifactId>
+			<version>0.4.0</version>
+		</dependency>
 	</dependencies>
 	<version>2.0.0</version>
 </project>
