@@ -20,6 +20,7 @@ public class CsvToDataset {
 				.option("header", "false").load(filename);
 		df.show();
 
+		// To ensure compatibility between Spark 2.0.0 and Spark 1.6.x
 		int count = df.columns().length;
 		for (int i = 0; i < count; i++) {
 			String oldColName = "_c" + i;

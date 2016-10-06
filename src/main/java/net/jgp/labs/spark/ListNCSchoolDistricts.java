@@ -25,7 +25,7 @@ public class ListNCSchoolDistricts {
 
 		SparkSession spark = SparkSession.builder().appName("NC Schools").master("local").getOrCreate();
 
-		String fileToAnalyze = "/Pool/" + filename;
+		String fileToAnalyze = "/tmp/" + filename;
 		System.out.println("File to analyze: " + fileToAnalyze);
 
 		Dataset<Row> df;
