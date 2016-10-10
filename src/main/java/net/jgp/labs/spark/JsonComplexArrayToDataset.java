@@ -5,7 +5,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 /**
- * A basic example of JSON array.
+ * A basic example of complex JSON array.
  * 
  * Note: The array is valid, but Spark does not like it
  * @author jgp
