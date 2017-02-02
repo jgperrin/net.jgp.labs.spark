@@ -1,4 +1,4 @@
-package net.jgp.labs.spark;
+package net.jgp.labs.spark.l000_ingestion;
 
 import java.util.Properties;
 

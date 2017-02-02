@@ -1,4 +1,4 @@
-package net.jgp.labs.spark;
+package net.jgp.labs.spark.l600_ml;
 
 import static org.apache.spark.sql.functions.callUDF;
 

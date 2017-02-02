@@ -1,7 +1,7 @@
 /**
  * Example on how to connect to a remote Spark server/cluster to see if it is live.
  */
-package net.jgp.labs.spark;
+package net.jgp.labs.spark.l050_connection;
 
 import org.apache.spark.sql.SparkSession;
 

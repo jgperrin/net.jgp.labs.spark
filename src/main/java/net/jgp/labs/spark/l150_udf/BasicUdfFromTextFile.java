@@ -1,26 +1,35 @@
-package net.jgp.labs.spark;
+package net.jgp.labs.spark.l150_udf;
 
 import static org.apache.spark.sql.functions.callUDF;
+
+import java.io.Serializable;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.api.java.UDF1;
 import org.apache.spark.sql.types.DataTypes;
 
-import net.jgp.labs.spark.udf.Multiplier2;
-
-public class BasicExternalUdfFromTextFile {
+public class BasicUdfFromTextFile implements Serializable {
+	private static final long serialVersionUID = 3492970200940899011L;
 
 	public static void main(String[] args) {
 		System.out.println("Working directory = " + System.getProperty("user.dir"));
-		BasicExternalUdfFromTextFile app = new BasicExternalUdfFromTextFile();
+		BasicUdfFromTextFile app = new BasicUdfFromTextFile();
 		app.start();
 	}
 
 	private void start() {
 		SparkSession spark = SparkSession.builder().appName("CSV to Dataset").master("local").getOrCreate();
 
-		spark.udf().register("x2Multiplier", new Multiplier2(), DataTypes.IntegerType);
+		spark.udf().register("x2Multiplier", new UDF1<Integer, Integer>() {
+			private static final long serialVersionUID = -5372447039252716846L;
+
+			@Override
+			public Integer call(Integer x) {
+				return x * 2;
+			}
+		}, DataTypes.IntegerType);
 
 		String filename = "data/tuple-data-file.csv";
 		Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true")

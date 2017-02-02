@@ -1,4 +1,4 @@
-package net.jgp.labs.spark;
+package net.jgp.labs.spark.l050_connection;
 
 import org.apache.spark.sql.SparkSession;
 

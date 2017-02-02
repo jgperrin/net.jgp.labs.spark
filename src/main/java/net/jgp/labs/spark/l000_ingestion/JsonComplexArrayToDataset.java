@@ -1,27 +1,27 @@
-package net.jgp.labs.spark;
+package net.jgp.labs.spark.l000_ingestion;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 /**
- * A basic example of JSON map handling.
+ * A basic example of complex JSON array.
  * 
- * Note: the map is valid, but Spark does not like it
+ * Note: The array is valid, but Spark does not like it
  * @author jgp
  */
-public class JsonMapToDataset {
+public class JsonComplexArrayToDataset {
 
 	public static void main(String[] args) {
 		System.out.println("Working directory = " + System.getProperty("user.dir"));
-		JsonMapToDataset app = new JsonMapToDataset();
+		JsonComplexArrayToDataset app = new JsonComplexArrayToDataset();
 		app.start();
 	}
 
 	private void start() {
-		SparkSession spark = SparkSession.builder().appName("JSON map to Dataset").master("local").getOrCreate();
+		SparkSession spark = SparkSession.builder().appName("Complex JSON array to Dataset").master("local").getOrCreate();
 
-		String filename = "data/map.json";
+		String filename = "data/array-complex.json";
 		long start = System.currentTimeMillis();
 		Dataset<Row> df = spark.read().json(filename);
 		long stop = System.currentTimeMillis();
