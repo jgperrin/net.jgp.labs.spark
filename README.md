@@ -1,4 +1,4 @@
-# net.jgp.labs.spark
+# Apache Spark Java Cookbook
 
 A few labs around Apache Spark, exclusively in Java.
 
