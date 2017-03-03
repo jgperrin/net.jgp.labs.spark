@@ -22,6 +22,7 @@ public class BasicUdfFromTextFile implements Serializable {
 	private void start() {
 		SparkSession spark = SparkSession.builder().appName("CSV to Dataset").master("local").getOrCreate();
 
+		//registers a new internal UDF
 		spark.udf().register("x2Multiplier", new UDF1<Integer, Integer>() {
 			private static final long serialVersionUID = -5372447039252716846L;
 
