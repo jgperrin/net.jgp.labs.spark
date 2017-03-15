@@ -16,8 +16,8 @@ public class CsvToDataset {
 		SparkSession spark = SparkSession.builder().appName("CSV to Dataset").master("local").getOrCreate();
 
 		String filename = "data/tuple-data-file.csv";
-		Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true")
-				.option("header", "false").load(filename);
+		Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true").option("header", "false")
+				.load(filename);
 		df.show();
 
 		// To ensure compatibility between Spark 2.0.0 and Spark 1.6.x
