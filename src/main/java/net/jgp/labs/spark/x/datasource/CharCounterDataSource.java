@@ -1,7 +1,5 @@
 package net.jgp.labs.spark.x.datasource;
 
-import java.util.Collection;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.Path;
@@ -41,41 +39,10 @@ public class CharCounterDataSource implements FileFormat {
 
 	@Override
 	public Option<StructType> inferSchema(SparkSession arg0, Map<String, String> arg1, Seq<FileStatus> arg2) {
+		// Build your schema
 		StructType schema = DataTypes
 				.createStructType(new StructField[] { DataTypes.createStructField("count", DataTypes.IntegerType, true) });
-		Option<StructType> o = new Option<StructType>() {
-			
-			@Override
-			public boolean canEqual(Object arg0) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public Object productElement(int arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public int productArity() {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-			@Override
-			public boolean isEmpty() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			@Override
-			public StructType get() {
-				// TODO Auto-generated method stub
-				return schema;
-			}
-		};
-		return o;
+		return new OptionStructType(schema);
 	}
 
 	@Override
@@ -85,7 +52,6 @@ public class CharCounterDataSource implements FileFormat {
 
 	@Override
 	public OutputWriterFactory prepareWrite(SparkSession arg0, Job arg1, Map<String, String> arg2, StructType arg3) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
