@@ -17,8 +17,7 @@ public class CustomDataSourceToDataset {
 	private static Logger log = LoggerFactory.getLogger(CharCounterDataSource.class);
 
 	public static void main(String[] args) {
-		log.info("Working directory: [{}]", System.getProperty("user.dir"));
-		log.debug("Working directory: [{}]", System.getProperty("user.dir"));
+		log.debug("Working directory: [{}].", System.getProperty("user.dir"));
 		CustomDataSourceToDataset app = new CustomDataSourceToDataset();
 		app.start();
 	}
@@ -30,9 +29,9 @@ public class CustomDataSourceToDataset {
 		long start = System.currentTimeMillis();
 		Dataset<Row> df = spark.read().format("net.jgp.labs.spark.x.datasource.CharCounterDataSource")
 				.option("char", "a") // count the number of 'a'
-				.load(filename); // local file (line 40 in the stacks below)
+				.load(filename); // local file
 		long stop = System.currentTimeMillis();
-		System.out.println("Processing took " + (stop - start) + " ms");
+		log.info("Processing took {} ms", stop - start);
 		df.printSchema();
 		df.show();
 	}

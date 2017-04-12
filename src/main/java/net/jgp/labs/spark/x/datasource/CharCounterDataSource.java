@@ -1,7 +1,5 @@
 package net.jgp.labs.spark.x.datasource;
 
-import java.util.Date;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.Path;
