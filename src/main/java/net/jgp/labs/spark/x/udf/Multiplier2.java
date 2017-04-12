@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.udf;
+package net.jgp.labs.spark.x.udf;
 
 import org.apache.spark.sql.api.java.UDF1;
 

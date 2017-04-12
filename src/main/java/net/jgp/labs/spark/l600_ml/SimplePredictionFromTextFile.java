@@ -16,7 +16,7 @@ import org.apache.spark.sql.types.Metadata;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 
-import net.jgp.labs.spark.udf.VectorBuilder;
+import net.jgp.labs.spark.x.udf.VectorBuilder;
 
 public class SimplePredictionFromTextFile  {
 

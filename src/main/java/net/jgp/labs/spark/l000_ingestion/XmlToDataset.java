@@ -15,8 +15,7 @@ public class XmlToDataset {
 	private void start() {
 		SparkSession spark = SparkSession.builder().appName("XML to Dataset").master("local").getOrCreate();
 
-		// String filename = "data/budget-2017.xml";
-		String filename = "/Users/jg.perrin/Downloads/2191POB001_20160414081914.xml";
+		String filename = "data/budget-2017.xml";
 		long start = System.currentTimeMillis();
 		Dataset<Row> df = spark.read().format("xml").option("rowTag", "item").load(filename);
 		long stop = System.currentTimeMillis();
@@ -24,8 +23,5 @@ public class XmlToDataset {
 		df.show();
 		df.printSchema();
 
-//		df.withColumn("FulfillmentOption1", df.col("//FulfillmentOption[1]/text()"));
-//		df.show();
-//		df.printSchema();
 	}
 }
