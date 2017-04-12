@@ -1,5 +1,7 @@
 package net.jgp.labs.spark.x.datasource;
 
+import java.util.Date;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.Path;
@@ -13,6 +15,8 @@ import org.apache.spark.sql.sources.Filter;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import scala.Function1;
 import scala.Option;
@@ -21,10 +25,12 @@ import scala.collection.Seq;
 import scala.collection.immutable.Map;
 
 public class CharCounterDataSource implements FileFormat {
+	private static Logger log = LoggerFactory.getLogger(CharCounterDataSource.class);
 
 	@Override
 	public Function1<PartitionedFile, Iterator<InternalRow>> buildReader(SparkSession arg0, StructType arg1,
 			StructType arg2, StructType arg3, Seq<Filter> arg4, Map<String, String> arg5, Configuration arg6) {
+		log.info("-> buildReader()");
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -33,6 +39,7 @@ public class CharCounterDataSource implements FileFormat {
 	public Function1<PartitionedFile, Iterator<InternalRow>> buildReaderWithPartitionValues(SparkSession arg0,
 			StructType arg1, StructType arg2, StructType arg3, Seq<Filter> arg4, Map<String, String> arg5,
 			Configuration arg6) {
+		log.info("-> buildReaderWithPartitionValues()");
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -40,8 +47,8 @@ public class CharCounterDataSource implements FileFormat {
 	@Override
 	public Option<StructType> inferSchema(SparkSession arg0, Map<String, String> arg1, Seq<FileStatus> arg2) {
 		// Build your schema
-		StructType schema = DataTypes
-				.createStructType(new StructField[] { DataTypes.createStructField("count", DataTypes.IntegerType, true) });
+		StructType schema = DataTypes.createStructType(
+				new StructField[] { DataTypes.createStructField("count", DataTypes.IntegerType, true) });
 		return new OptionStructType(schema);
 	}
 
