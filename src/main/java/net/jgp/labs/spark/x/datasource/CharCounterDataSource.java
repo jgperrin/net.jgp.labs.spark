@@ -31,7 +31,6 @@ public class CharCounterDataSource implements FileFormat {
 	public Function1<PartitionedFile, Iterator<InternalRow>> buildReader(SparkSession arg0, StructType arg1,
 			StructType arg2, StructType arg3, Seq<Filter> arg4, Map<String, String> arg5, Configuration arg6) {
 		log.info("-> buildReader()");
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -40,8 +39,7 @@ public class CharCounterDataSource implements FileFormat {
 			StructType arg1, StructType arg2, StructType arg3, Seq<Filter> arg4, Map<String, String> arg5,
 			Configuration arg6) {
 		log.info("-> buildReaderWithPartitionValues()");
-		// TODO Auto-generated method stub
-		return null;
+		return new ReaderFunction();
 	}
 
 	@Override
