@@ -20,7 +20,7 @@ public class CharCounterDataSource2 implements RelationProvider {
 
 		if (log.isDebugEnabled()) {
 			for (java.util.Map.Entry<String, String> entry : javaMap.entrySet()) {
-				log.debug(entry.getKey() + "/" + entry.getValue());
+				log.debug("[{}] --> [{}]", entry.getKey(), entry.getValue());
 			}
 		}
 
