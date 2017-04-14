@@ -25,6 +25,7 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 	private static Logger log = LoggerFactory.getLogger(CharCounterRelation.class);
 
 	private SQLContext sqlContext;
+	private String filename;
 
 	@Override
 	public StructType schema() {
@@ -50,18 +51,22 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 		// TODO Auto-generated method stub
 		List<Row> rows = null;
 		rows = new ArrayList<>();
-		
+
 		List<Integer> list = new ArrayList<>();
 		list.add(45);
 
 		SparkContext sparkContext = this.sqlContext.sparkContext();
-//		RowFactory.create(row);
-//JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map((String row) -> {
-//                return RowFactory.create(row);
-//            });
-		
+		// RowFactory.create(row);
+		// JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map((String row)
+		// -> {
+		// return RowFactory.create(row);
+		// });
 
-		return null;//rowRDD.rdd();
+		return null;// rowRDD.rdd();
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 }
