@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.rdd.RDD;
@@ -71,19 +70,40 @@ public class SubStringCounterRelation extends BaseRelation implements Serializab
 	@Override
 	public RDD<Row> buildScan() {
 		log.debug("-> buildScan()");
+
+		// I have isolated the work to a method to keep the plumbing code as simple as possible.
+		List<List<Integer>> table = collectData();
+
+		@SuppressWarnings("resource") // cannot be closed here, done elsewhere
+		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
+		JavaRDD<Row> rowRDD = sparkContext.parallelize(table).map(row -> RowFactory.create(row.toArray()));
+
+		return rowRDD.rdd();
+	}
+
+	/**
+	 * Builds the data table that will then be turned into a RDD. The way it is
+	 * built is slightly out of the scope of this example, it simply does line
+	 * by line and count the substring we want to analyze in the source file.
+	 * 
+	 * @return The data as a List of List of Integer. I know, it could be more
+	 *         elegant.
+	 */
+	private List<List<Integer>> collectData() {
+		List<List<Integer>> table = new ArrayList<>();
+
 		FileReader fileReader;
 		try {
 			fileReader = new FileReader(filename);
 		} catch (FileNotFoundException e) {
 			log.error("File [{}] not found, got {}", filename, e.getMessage(), e);
-			return emptyRow();
+			return table;
 		}
 
 		BufferedReader br = new BufferedReader(fileReader);
 		String line;
 		int lineCount = 0;
 		int criteriaCount = this.criteria.size();
-		List<List<Integer>> table = new ArrayList<>();
 		List<Integer> row0;
 		do {
 			row0 = new ArrayList<>();
@@ -109,23 +129,7 @@ public class SubStringCounterRelation extends BaseRelation implements Serializab
 			log.error("Error while closing [{}], got {}", filename, e.getMessage(), e);
 		}
 
-		// We will work now
-		List<Integer> list = new ArrayList<>();
-		list.add(45);
-
-		@SuppressWarnings("resource") // cannot be closed here, done elsewhere
-		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
-		JavaRDD<Row> rowRDD = sparkContext.parallelize(table).map(row -> RowFactory.create(row.toArray()));
-
-		return rowRDD.rdd();
-	}
-
-	private RDD<Row> emptyRow() {
-		List<Integer> list = new ArrayList<>();
-		@SuppressWarnings("resource") // cannot be closed here, done elsewhere
-		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
-		JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map(row -> RowFactory.create(row));
-		return rowRDD.rdd();
+		return table;
 	}
 
 	public void setFilename(String filename) {
