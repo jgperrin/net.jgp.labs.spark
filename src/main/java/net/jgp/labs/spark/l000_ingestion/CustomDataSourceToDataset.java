@@ -32,6 +32,6 @@ public class CustomDataSourceToDataset {
 		log.info("Processing took {} ms", stop - start);
 		df.printSchema();
 		df.collect();
-		//df.show();
+		df.show();
 	}
 }
