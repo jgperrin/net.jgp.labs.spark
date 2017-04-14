@@ -23,7 +23,7 @@ public final class ReaderFunction implements Serializable, Function1<Partitioned
 	@Override
 	public Iterator<InternalRow> apply(PartitionedFile arg0) {
 		log.debug("-> apply({})", arg0.filePath());
-		RDD<T> a;
+		//RDD<T> a;
 		return null;
 	}
 
