@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.spark.SparkContext;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.rdd.RDD;
-import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.sources.BaseRelation;
 import org.apache.spark.sql.sources.TableScan;
@@ -26,12 +23,28 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 
 	private SQLContext sqlContext;
 	private String filename;
+	private boolean updateSchema = true;
+
+	/**
+	 * Schema, never call directly, always rely on the schema() method.
+	 */
+	private StructType schema = null;
+	private List<String> criteria = new ArrayList<>();
 
 	@Override
 	public StructType schema() {
 		log.debug("-> schema()");
-		StructType schema = DataTypes.createStructType(
-				new StructField[] { DataTypes.createStructField("count", DataTypes.IntegerType, true) });
+		if (updateSchema) {
+			List <StructField> sfl = new ArrayList<>();
+			for (String crit: this.criteria) {
+				sfl.add(DataTypes.createStructField(crit, DataTypes.IntegerType, true));
+			}
+//			schema = DataTypes.createStructType(
+//					new StructField[] { DataTypes.createStructField("count", DataTypes.IntegerType, true) });
+			//StructField[] sf = new StructField(name, dataType, nullable, metadata)
+			schema = DataTypes.createStructType(sfl);
+			updateSchema = false;
+		}
 		return schema;
 	}
 
@@ -67,6 +80,11 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	public void addCriteria(String crit) {
+		this.updateSchema = true;
+		this.criteria .add(crit);
 	}
 
 }

@@ -28,6 +28,8 @@ public class CharCounterDataSource2 implements RelationProvider {
 				log.debug("[{}] --> [{}]", key, value);
 				if (key.compareTo(K.PATH) == 0) {
 					br.setFilename(value);
+				} else if (key.startsWith(K.COUNT)){
+					br.addCriteria(value);
 				}
 			}
 

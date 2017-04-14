@@ -6,6 +6,8 @@ import org.apache.spark.sql.SparkSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.jgp.labs.spark.x.utils.K;
+
 /**
  * Turning a custom data source to a Dataset/Dataframe.
  * 
@@ -26,8 +28,8 @@ public class CustomDataSourceToDataset {
 		String filename = "data/array-complex.json";
 		long start = System.currentTimeMillis();
 		Dataset<Row> df = spark.read().format("net.jgp.labs.spark.x.datasource.CharCounterDataSource2")
-				.option("count0", "a") // count the number of 'a'
-				.option("count1", "b") // count the number of 'b'
+				.option(K.COUNT + "0", "a") // count the number of 'a'
+				.option(K.COUNT + "1", "b") // count the number of 'b'
 				.load(filename); // local file
 		long stop = System.currentTimeMillis();
 		log.info("Processing took {} ms", stop - start);
