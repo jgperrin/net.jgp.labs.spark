@@ -2,6 +2,7 @@ package net.jgp.labs.spark.x.datasource;
 
 import java.io.Serializable;
 
+import org.apache.spark.rdd.RDD;
 import org.apache.spark.sql.catalyst.InternalRow;
 import org.apache.spark.sql.execution.datasources.PartitionedFile;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ public final class ReaderFunction implements Serializable, Function1<Partitioned
 	@Override
 	public Iterator<InternalRow> apply(PartitionedFile arg0) {
 		log.debug("-> apply({})", arg0.filePath());
+		RDD<T> a;
 		return null;
 	}
 
