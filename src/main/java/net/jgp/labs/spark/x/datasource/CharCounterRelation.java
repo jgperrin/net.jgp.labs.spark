@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.spark.SparkContext;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.rdd.RDD;
 import org.apache.spark.sql.Row;
+import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.sources.BaseRelation;
 import org.apache.spark.sql.sources.TableScan;
@@ -31,17 +34,18 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 	private StructType schema = null;
 	private List<String> criteria = new ArrayList<>();
 
+	/**
+	 * Constructs the schema. Internally cache it to avoid rebuilding it every
+	 * time.
+	 */
 	@Override
 	public StructType schema() {
 		log.debug("-> schema()");
-		if (updateSchema) {
-			List <StructField> sfl = new ArrayList<>();
-			for (String crit: this.criteria) {
-				sfl.add(DataTypes.createStructField(crit, DataTypes.IntegerType, true));
+		if (updateSchema || schema == null) {
+			List<StructField> sfl = new ArrayList<>();
+			for (String crit : this.criteria) {
+				sfl.add(DataTypes.createStructField(crit, DataTypes.IntegerType, false));
 			}
-//			schema = DataTypes.createStructType(
-//					new StructField[] { DataTypes.createStructField("count", DataTypes.IntegerType, true) });
-			//StructField[] sf = new StructField(name, dataType, nullable, metadata)
 			schema = DataTypes.createStructType(sfl);
 			updateSchema = false;
 		}
@@ -61,21 +65,13 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 	@Override
 	public RDD<Row> buildScan() {
 		log.debug("-> buildScan()");
-		// TODO Auto-generated method stub
-		List<Row> rows = null;
-		rows = new ArrayList<>();
-
 		List<Integer> list = new ArrayList<>();
 		list.add(45);
 
-		SparkContext sparkContext = this.sqlContext.sparkContext();
-		// RowFactory.create(row);
-		// JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map((String row)
-		// -> {
-		// return RowFactory.create(row);
-		// });
+		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
+		JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map(row -> RowFactory.create(row));
 
-		return null;// rowRDD.rdd();
+		return rowRDD.rdd();
 	}
 
 	public void setFilename(String filename) {
@@ -84,7 +80,7 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 
 	public void addCriteria(String crit) {
 		this.updateSchema = true;
-		this.criteria .add(crit);
+		this.criteria.add(crit);
 	}
 
 }
