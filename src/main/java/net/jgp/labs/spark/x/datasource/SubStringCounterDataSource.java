@@ -10,7 +10,7 @@ import net.jgp.labs.spark.l000_ingestion.CustomDataSourceToDataset;
 import net.jgp.labs.spark.x.utils.K;
 import scala.collection.immutable.Map;
 
-public class CharCounterDataSource2 implements RelationProvider {
+public class SubStringCounterDataSource implements RelationProvider {
 	private static Logger log = LoggerFactory.getLogger(CustomDataSourceToDataset.class);
 
 	@Override
@@ -19,7 +19,7 @@ public class CharCounterDataSource2 implements RelationProvider {
 
 		java.util.Map<String, String> javaMap = scala.collection.JavaConverters.mapAsJavaMapConverter(arg1).asJava();
 
-		CharCounterRelation br = new CharCounterRelation();
+		SubStringCounterRelation br = new SubStringCounterRelation();
 		br.setSqlContext(arg0);
 
 			for (java.util.Map.Entry<String, String> entry : javaMap.entrySet()) {

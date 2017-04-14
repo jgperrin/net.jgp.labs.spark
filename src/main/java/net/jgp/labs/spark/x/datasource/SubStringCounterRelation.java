@@ -24,10 +24,10 @@ import org.apache.spark.sql.types.StructType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CharCounterRelation extends BaseRelation implements Serializable, TableScan {
+public class SubStringCounterRelation extends BaseRelation implements Serializable, TableScan {
 
 	private static final long serialVersionUID = -3441600156161255871L;
-	private static Logger log = LoggerFactory.getLogger(CharCounterRelation.class);
+	private static Logger log = LoggerFactory.getLogger(SubStringCounterRelation.class);
 
 	private SQLContext sqlContext;
 	private String filename;

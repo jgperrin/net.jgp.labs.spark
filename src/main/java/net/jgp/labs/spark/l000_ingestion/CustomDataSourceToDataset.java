@@ -27,7 +27,7 @@ public class CustomDataSourceToDataset {
 
 		String filename = "data/array-complex.json";
 		long start = System.currentTimeMillis();
-		Dataset<Row> df = spark.read().format("net.jgp.labs.spark.x.datasource.CharCounterDataSource2")
+		Dataset<Row> df = spark.read().format("net.jgp.labs.spark.x.datasource.SubStringCounterDataSource")
 				.option(K.COUNT + "0", "a") // count the number of 'a'
 				.option(K.COUNT + "1", "b") // count the number of 'b'
 				.option(K.COUNT + "2", "color") // count the number of 'color'
