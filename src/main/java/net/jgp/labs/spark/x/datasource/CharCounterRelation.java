@@ -1,5 +1,9 @@
 package net.jgp.labs.spark.x.datasource;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +47,7 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 		log.debug("-> schema()");
 		if (updateSchema || schema == null) {
 			List<StructField> sfl = new ArrayList<>();
+			sfl.add(DataTypes.createStructField("line", DataTypes.IntegerType, true));
 			for (String crit : this.criteria) {
 				sfl.add(DataTypes.createStructField(crit, DataTypes.IntegerType, false));
 			}
@@ -65,12 +70,48 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 	@Override
 	public RDD<Row> buildScan() {
 		log.debug("-> buildScan()");
+		FileReader fileReader;
+		try {
+			fileReader = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			log.error("File [{}] not found, got {}", filename, e.getMessage(), e);
+			return emptyRow();
+		}
+
+		BufferedReader br = new BufferedReader(fileReader);
+		String line;
+		do {
+			try {
+				line = br.readLine();
+				//line.
+			} catch (IOException e) {
+				log.error("Error while reading [{}], got {}", filename, e.getMessage(), e);
+				break;
+			}
+		} while (line != null);
+
+		try {
+			br.close();
+		} catch (IOException e) {
+			log.error("Error while closing [{}], got {}", filename, e.getMessage(), e);
+		}
+		
+		// We will work now
 		List<Integer> list = new ArrayList<>();
 		list.add(45);
 
+		@SuppressWarnings("resource") // cannot be closed here, done elsewhere
 		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
 		JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map(row -> RowFactory.create(row));
 
+		return rowRDD.rdd();
+	}
+
+	private RDD<Row> emptyRow() {
+		List<Integer> list = new ArrayList<>();
+		@SuppressWarnings("resource") // cannot be closed here, done elsewhere
+		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
+		JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map(row -> RowFactory.create(row));
 		return rowRDD.rdd();
 	}
 

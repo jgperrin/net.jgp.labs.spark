@@ -29,7 +29,7 @@ public class CustomDataSourceToDataset {
 		long start = System.currentTimeMillis();
 		Dataset<Row> df = spark.read().format("net.jgp.labs.spark.x.datasource.CharCounterDataSource2")
 				.option(K.COUNT + "0", "a") // count the number of 'a'
-				//.option(K.COUNT + "1", "b") // count the number of 'b'
+				.option(K.COUNT + "1", "b") // count the number of 'b'
 				.load(filename); // local file
 		long stop = System.currentTimeMillis();
 		log.info("Processing took {} ms", stop - start);
