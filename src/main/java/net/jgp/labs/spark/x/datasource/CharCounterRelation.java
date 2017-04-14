@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -80,14 +81,26 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 
 		BufferedReader br = new BufferedReader(fileReader);
 		String line;
+		int lineCount = 0;
+		int criteriaCount = this.criteria.size();
+		List<List<Integer>> table = new ArrayList<>();
+		List<Integer> row0;
 		do {
+			row0 = new ArrayList<>();
 			try {
 				line = br.readLine();
-				//line.
 			} catch (IOException e) {
 				log.error("Error while reading [{}], got {}", filename, e.getMessage(), e);
 				break;
 			}
+			row0.add(lineCount);
+			for (int i = 0; i < criteriaCount; i++) {
+				int v = StringUtils.countMatches(line, this.criteria.get(i));
+				row0.add(v);
+			}
+			// line.
+			table.add(row0);
+			lineCount++;
 		} while (line != null);
 
 		try {
@@ -95,14 +108,14 @@ public class CharCounterRelation extends BaseRelation implements Serializable, T
 		} catch (IOException e) {
 			log.error("Error while closing [{}], got {}", filename, e.getMessage(), e);
 		}
-		
+
 		// We will work now
 		List<Integer> list = new ArrayList<>();
 		list.add(45);
 
 		@SuppressWarnings("resource") // cannot be closed here, done elsewhere
 		JavaSparkContext sparkContext = new JavaSparkContext(sqlContext.sparkContext());
-		JavaRDD<Row> rowRDD = sparkContext.parallelize(list).map(row -> RowFactory.create(row));
+		JavaRDD<Row> rowRDD = sparkContext.parallelize(table).map(row -> RowFactory.create(row.toArray()));
 
 		return rowRDD.rdd();
 	}
