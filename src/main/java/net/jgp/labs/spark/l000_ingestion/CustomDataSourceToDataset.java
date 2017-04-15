@@ -35,7 +35,6 @@ public class CustomDataSourceToDataset {
 		long stop = System.currentTimeMillis();
 		log.info("Processing took {} ms", stop - start);
 		df.printSchema();
-		df.collect();
 		df.show();
 	}
 }
