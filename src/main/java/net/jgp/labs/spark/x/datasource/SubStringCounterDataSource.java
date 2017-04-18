@@ -6,12 +6,11 @@ import org.apache.spark.sql.sources.RelationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.jgp.labs.spark.l000_ingestion.CustomDataSourceToDataset;
 import net.jgp.labs.spark.x.utils.K;
 import scala.collection.immutable.Map;
 
 public class SubStringCounterDataSource implements RelationProvider {
-	private static Logger log = LoggerFactory.getLogger(CustomDataSourceToDataset.class);
+	private static Logger log = LoggerFactory.getLogger(SubStringCounterDataSource.class);
 
 	@Override
 	public BaseRelation createRelation(SQLContext arg0, Map<String, String> arg1) {
