@@ -7,7 +7,7 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import net.jgp.commons.download.DownloadManager;
+import net.jgp.commons.io.download.DownloadManager;
 
 /**
  * @author jgp

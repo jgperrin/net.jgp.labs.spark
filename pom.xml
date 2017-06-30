@@ -11,6 +11,15 @@
 	</properties>
 
 	<dependencies>
+	
+			<!-- Other JGP.net stuff -->
+		<dependency>
+			<groupId>net.jgp.commons</groupId>
+			<artifactId>io</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- Spark -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_${scala.version}</artifactId>
@@ -31,23 +40,26 @@
 			<artifactId>spark-mllib_${scala.version}</artifactId>
 			<version>${spark.version}</version>
 		</dependency>
+
+		<!-- DB -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.3</version>
 		</dependency>
+
+		<!-- Other Spark -->
 		<dependency>
 			<groupId>com.databricks</groupId>
 			<artifactId>spark-xml_${scala.version}</artifactId>
 			<version>0.4.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<!-- Log -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
-
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -60,7 +72,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<!-- Apache Commons -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
