@@ -17,13 +17,6 @@
 			<groupId>net.jgp.commons</groupId>
 			<artifactId>io</artifactId>
 			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<!-- Spark -->
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_${scala.version}</artifactId>
-			<version>${spark.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -34,8 +27,16 @@
 					<artifactId>slf4j-simple</artifactId>
 				</exclusion>
 			</exclusions>
+					</dependency>
+
+		<!-- Spark -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${scala.version}</artifactId>
+			<version>${spark.version}</version>
+			
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-sql_${scala.version}</artifactId>
@@ -51,7 +52,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-mllib_${scala.version}</artifactId>
