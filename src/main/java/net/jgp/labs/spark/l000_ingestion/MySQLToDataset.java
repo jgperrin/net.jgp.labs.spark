@@ -14,15 +14,15 @@ public class MySQLToDataset {
 	}
 
 	private void start() {
-		SparkSession spark = SparkSession.builder().appName("Dataset from MySQL JDBC Connection").master("local").getOrCreate();
+		SparkSession spark = SparkSession.builder().appName("Dataset from MySQL JDBC Connection").master("local")
+				.getOrCreate();
 
 		java.util.Properties props = new Properties();
-		props.put("user", "u");
-		props.put("password", "p");
+		props.put("user", "root");
+		props.put("password", "password");
 		props.put("useSSL", "false");
-		props.put("serverTimezone", "EST");
-		Dataset<Row> df = spark.read().jdbc("jdbc:mysql://mocka:3306/nceatery", "post", props);
-		df = df.orderBy(df.col("date_last_update"));
+		Dataset<Row> df = spark.read().jdbc("jdbc:mysql://localhost:3306/sakila?serverTimezone=EST", "actor", props);
+		df = df.orderBy(df.col("last_name"));
 		df.show();
 	}
 }
