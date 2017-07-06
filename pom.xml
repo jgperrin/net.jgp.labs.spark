@@ -14,27 +14,17 @@
 
 		<!-- Other JGP.net stuff -->
 		<dependency>
-			<groupId>net.jgp.commons</groupId>
-			<artifactId>io</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-simple</artifactId>
-				</exclusion>
-			</exclusions>
-					</dependency>
+			<groupId>net.jgp</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 
 		<!-- Spark -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_${scala.version}</artifactId>
 			<version>${spark.version}</version>
-			
+
 		</dependency>
 
 		<dependency>
