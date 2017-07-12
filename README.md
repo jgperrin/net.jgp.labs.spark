@@ -1,5 +1,11 @@
 # Apache Spark Java Cookbook
 
+## Environment
+These labs rely on:
+* Apache Spark 2.2.0 (base on Scala 2.11)
+* Java 8
+
+## Labs
 A few labs around Apache Spark, exclusively in Java.
 
 Organization is now in sub packages:
