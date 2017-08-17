@@ -2,10 +2,7 @@ package net.jgp.labs.spark.l400_industry_formats.l000_hl7_fhir;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.apache.spark.api.java.function.ForeachFunction;
 import org.apache.spark.sql.Dataset;
@@ -19,7 +16,7 @@ import org.hl7.fhir.dstu3.model.Identifier.IdentifierUse;
 public class ClaimLoaderApp implements Serializable {
 	private static final long serialVersionUID = -4250231621481140743L;
 
-	private final class ClaimPrepAndSync implements ForeachFunction<Row> {
+	private final class ClaimPrepAndProcess implements ForeachFunction<Row> {
 		private static final long serialVersionUID = -3680381094052434862L;
 
 		@Override
@@ -39,7 +36,7 @@ public class ClaimLoaderApp implements Serializable {
 			Identifier i = new Identifier();
 			i.setUse(IdentifierUse.OFFICIAL);
 			i.setType(cc);
-			i.setSystem("Payer Specific Claim Number");
+			i.setSystem("Payer Specific	 Claim Number");
 			i.setValue(r.getAs("CLAIM_NBR"));
 			// TODO i.setAssigner(value);
 
@@ -69,6 +66,6 @@ public class ClaimLoaderApp implements Serializable {
 				.load(filename);
 		claimsDf.show();
 
-		claimsDf.foreach(new ClaimPrepAndSync());
+		claimsDf.foreach(new ClaimPrepAndProcess());
 	}
 }
