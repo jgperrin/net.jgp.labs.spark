@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l800_concurrency.l001;
+package net.jgp.labs.spark.l800_concurrency.l000;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
