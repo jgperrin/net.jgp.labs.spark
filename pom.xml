@@ -12,8 +12,6 @@
 
 	<dependencies>
 
-		<!-- Other JGP.net stuff -->
-
 		<!-- Spark -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
@@ -96,6 +94,36 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.5</version>
 		</dependency>
+
+		<!-- Industry specific stuff, may be safely removed if not used -->
+
+		<!-- HL7 - FHIR -->
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-base</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-structures-hl7org-dstu2</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-validation-resources-dstu2</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-structures-dstu3</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-validation-resources-dstu3</artifactId>
+			<version>2.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -110,6 +138,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<description>Labs &amp; tests around Apache Spark.</description>
 </project>
