@@ -1,13 +1,13 @@
-package net.jgp.labs.spark.l200_join.l001;
+package net.jgp.labs.spark.l200_join.l010;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-public class AuthorsAndBooks {
+public class AuthorsWithNoBooks {
 
   public static void main(String[] args) {
-    AuthorsAndBooks app = new AuthorsAndBooks();
+    AuthorsWithNoBooks app = new AuthorsWithNoBooks();
     app.start();
   }
 
@@ -23,7 +23,6 @@ public class AuthorsAndBooks {
         .option("header", "true")
         .load(filename);
     // @formatter:on
-    authorsDf.show();
 
     filename = "data/books.csv";
     // @formatter:off
@@ -33,9 +32,8 @@ public class AuthorsAndBooks {
         .option("header", "true")
         .load(filename);
     // @formatter:on
-    booksDf.show();
     
-    Dataset<Row> libraryDf = authorsDf.join(booksDf, authorsDf.col("id").equalTo(booksDf.col("authorId")), "full_outer");    
+    Dataset<Row> libraryDf = authorsDf.join(booksDf, authorsDf.col("id").equalTo(booksDf.col("authorId")), "left_anti");    
     libraryDf.show();
     libraryDf.printSchema();
   }
