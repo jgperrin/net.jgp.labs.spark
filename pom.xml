@@ -13,11 +13,6 @@
 	<dependencies>
 
 		<!-- Other JGP.net stuff -->
-		<dependency>
-			<groupId>net.jgp</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>1.0.2</version>
-		</dependency>
 
 		<!-- Spark -->
 		<dependency>
