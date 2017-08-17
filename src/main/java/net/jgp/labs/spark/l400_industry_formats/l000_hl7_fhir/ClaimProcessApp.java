@@ -13,7 +13,7 @@ import org.hl7.fhir.dstu3.model.CodeableConcept;
 import org.hl7.fhir.dstu3.model.Identifier;
 import org.hl7.fhir.dstu3.model.Identifier.IdentifierUse;
 
-public class ClaimLoaderApp implements Serializable {
+public class ClaimProcessApp implements Serializable {
 	private static final long serialVersionUID = -4250231621481140743L;
 
 	private final class ClaimPrepAndProcess implements ForeachFunction<Row> {
@@ -54,7 +54,7 @@ public class ClaimLoaderApp implements Serializable {
 	}
 
 	public static void main(String[] args) {
-		ClaimLoaderApp app = new ClaimLoaderApp();
+		ClaimProcessApp app = new ClaimProcessApp();
 		app.start();
 	}
 
