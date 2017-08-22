@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l800_concurrency.l000;
+package net.jgp.labs.spark.l801_concurrency_in_progress.l000;
 
 public abstract class Config {
 
