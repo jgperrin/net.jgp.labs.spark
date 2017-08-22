@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l000_ingestion;
+package net.jgp.labs.spark.l000_ingestion.l300_rdbms;
 
 import java.util.Properties;
 

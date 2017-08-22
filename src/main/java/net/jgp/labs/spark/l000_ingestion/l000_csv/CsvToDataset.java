@@ -1,13 +1,14 @@
-package net.jgp.labs.spark.l000_ingestion.l500_dataset_book;
+package net.jgp.labs.spark.l000_ingestion.l000_csv;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-public class CsvToDatasetBook {
+public class CsvToDataset {
 
 	public static void main(String[] args) {
-		CsvToDatasetBook app = new CsvToDatasetBook();
+		System.out.println("Working directory = " + System.getProperty("user.dir"));
+		CsvToDataset app = new CsvToDataset();
 		app.start();
 	}
 
@@ -17,6 +18,15 @@ public class CsvToDatasetBook {
 		String filename = "data/tuple-data-file.csv";
 		Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true").option("header", "false")
 				.load(filename);
+		df.show();
+
+		// To ensure compatibility between Spark 2.0.0 and Spark 1.6.x
+		int count = df.columns().length;
+		for (int i = 0; i < count; i++) {
+			String oldColName = "_c" + i;
+			String newColName = "C" + i;
+			df = df.withColumn(newColName, df.col(oldColName)).drop(oldColName);
+		}
 		df.show();
 	}
 }

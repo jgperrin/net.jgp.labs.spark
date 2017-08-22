@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l000_ingestion;
+package net.jgp.labs.spark.l000_ingestion.l100_json;
 
 import static org.apache.spark.sql.functions.explode;
 

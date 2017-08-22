@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l000_ingestion;
+package net.jgp.labs.spark.l000_ingestion.l700_java;
 
 import java.util.Arrays;
 import java.util.List;

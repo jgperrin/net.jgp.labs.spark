@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l000_ingestion;
+package net.jgp.labs.spark.l000_ingestion.l200_xml;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
