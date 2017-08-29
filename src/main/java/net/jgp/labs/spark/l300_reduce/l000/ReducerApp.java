@@ -36,5 +36,4 @@ public class ReducerApp implements Serializable {
 		Integer sumByReduce = df.reduce(new SumByReduce());
 		System.out.println("Sum should be 55 and it is... " + sumByReduce);
 	}
-
 }
