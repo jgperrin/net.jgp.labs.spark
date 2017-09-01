@@ -15,8 +15,14 @@ public class BooksCsvToDataset {
 		SparkSession spark = SparkSession.builder().appName("Book CSV to Dataset").master("local").getOrCreate();
 
 		String filename = "data/books.csv";
-		Dataset<Row> df = spark.read().format("csv").option("inferSchema", "false").option("header", "true")
+		// @formatter:off
+		Dataset<Row> df = spark
+				.read()
+				.format("csv")
+				.option("inferSchema", "false") // We are not inferring the schema for now
+				.option("header", "true")
 				.load(filename);
+		// @formatter:on
 		df.show();
 		
 		// In this case everything is a string
