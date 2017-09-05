@@ -14,7 +14,7 @@ A few labs around Apache Spark, exclusively in Java.
 Organization is now in sub packages:
 
 * l000_ingestion: Data ingestion from various sources.
-* l020\_streaming: Data ingestion via streaming. Special note on [Streaming](http://src/main/java/net/jgp/labs/spark/l020_streaming/README.md).
+* l020\_streaming: Data ingestion via streaming. Special note on [Streaming](src/main/java/net/jgp/labs/spark/l020_streaming/README.md).
 * l050_connection: Connect to Spark.
 * l100_checkpoint: Checkpoint introduced in v2.1.0.
 * l150_udf: UDF (User Defined Functions).
