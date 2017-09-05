@@ -1,0 +1,6 @@
+Year,Length,Title,Subject,Actor,Actress,Director,Popularity,Awards,*Image
+1990,111,Tie Me Up! Tie Me Down!,Comedy,Banderas_ Antonio,Abril_ Victoria,Almodóvar_ Pedro,68,False,NicholasCage.png
+1991,113,High Heels,Comedy,Bosé_ Miguel,Abril_ Victoria,Almodóvar_ Pedro,68,false,NicholasCage.png
+1983,104,Dead Zone_ The,Horror,Walken_ Christopher,Adams_ Brooke,Cronenberg_ David,79,true,NicholasCage.png
+1979,122,Cuba,Action,Connery_ Sean,Adams_ Brooke,Lester_ Richard,6,false,seanConnery.png
+1978,94,Days of Heaven,Drama,Gere_ Richard,Adams_ Brooke,Malick_ Terrence,14,trUe,NicholasCage.png

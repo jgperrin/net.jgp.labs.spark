@@ -1,18 +1,11 @@
 # Apache Spark Java Cookbook
 
-<<<<<<< HEAD
-## Check out your Spark Version & Pick the Right Branch
-Check out each branch to see on which version of Spark you would like to work. Master only contains the README.md from now on.
-
-## Overview
-=======
 ## Environment
 These labs rely on:
 * Apache Spark 2.2.0 (base on Scala 2.11)
 * Java 8
 
 ## Labs
->>>>>>> baf35670e1865cc43c5eef8be0f28881b77cf4f6
 A few labs around Apache Spark, exclusively in Java.
 
 Organization is now in sub packages:
