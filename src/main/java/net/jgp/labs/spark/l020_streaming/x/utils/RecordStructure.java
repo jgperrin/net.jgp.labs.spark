@@ -1,16 +1,30 @@
 package net.jgp.labs.spark.l020_streaming.x.utils;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RecordStructure {
 
 	private String recordName;
 	private LinkedHashMap<String, RecordType> columns;
+	private List<Integer> identifiers;
+	private RecordStructure linkedRecord;
 
 	public RecordStructure(String recordName) {
+		init(recordName, null);
+	}
+
+	public RecordStructure(String recordName, RecordStructure linkedRecord) {
+		init(recordName, linkedRecord);
+	}
+
+	private void init(String recordName, RecordStructure linkedRecord) {
 		this.recordName = recordName;
 		this.columns = new LinkedHashMap<>();
+		this.identifiers = new ArrayList<>();
+		this.linkedRecord = linkedRecord;
 	}
 
 	public void add(String columnName, RecordType recordType) {
@@ -53,6 +67,21 @@ public class RecordStructure {
 				case SSN:
 					record.append(RecordGeneratorUtils.getRandomSSN());
 					break;
+				case ID:
+					int id = RecordGeneratorUtils.getIdentifier(this.identifiers);
+					record.append(id);
+					this.identifiers.add(id);
+					break;
+				case TITLE:
+					record.append(RecordGeneratorUtils.getTitle());
+					break;
+				case LINKED_ID:
+					if (this.linkedRecord == null) {
+						record.append("null");
+					} else {
+						record.append(RecordGeneratorUtils.getLinkedIdentifier(this.linkedRecord.identifiers));
+					}
+					break;
 				default:
 					break;
 				}
@@ -60,6 +89,7 @@ public class RecordStructure {
 			record.append('\n');
 			first = true;
 		}
+		System.out.println(record);
 		return record;
 	}
 

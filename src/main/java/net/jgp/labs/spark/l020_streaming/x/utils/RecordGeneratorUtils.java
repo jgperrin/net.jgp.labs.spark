@@ -1,5 +1,7 @@
 package net.jgp.labs.spark.l020_streaming.x.utils;
 
+import java.util.List;
+
 /**
  * Utility methods to help generate random records.
  * 
@@ -11,6 +13,10 @@ public abstract class RecordGeneratorUtils {
 			"Mahendra", "Noah", "Noemie", "Fred", "Anupam", "Stephanie", "Ken", "Sam", "Murthy", "Jonathan" };
 	private static String[] lnames = { "Smith", "Mills", "Perrin", "Foster", "Kumar", "Jones", "Tutt", "Main", "Haque",
 			"Christie", "Khan", "Kahn", "Hahn" };
+	private static String[] articles = { "The", "My", "A", "Your", "Their" };
+	private static String[] adjectives = { "", "Great", "Beautiful", "Better", "Worse", "Gorgeous", "Terrific",
+			"Terrible", "Natural", "Wild" };
+	private static String[] nouns = { "Life", "Trip", "Experience", "Work", "Job", "Beach" };
 
 	public static String getRandomSSN() {
 		return "" + getRandomInt(10) + getRandomInt(10) + getRandomInt(10) + "-" + getRandomInt(10) + getRandomInt(10)
@@ -27,6 +33,42 @@ public abstract class RecordGeneratorUtils {
 
 	public static String getLastName() {
 		return lnames[getRandomInt(lnames.length)];
+	}
+
+	public static String getArticle() {
+		return articles[getRandomInt(articles.length)];
+	}
+
+	public static String getAdjective() {
+		return adjectives[getRandomInt(adjectives.length)];
+	}
+
+	public static String getNoun() {
+		return nouns[getRandomInt(nouns.length)];
+	}
+
+	public static String getTitle() {
+		return (getArticle() + " " + getAdjective()).trim() + " " + getNoun();
+	}
+
+	public static int getIdentifier(List<Integer> identifiers) {
+		int i;
+		do {
+			i = getRandomInt(60000);
+		} while (identifiers.contains(i));
+
+		return i;
+	}
+
+	public static Integer getLinkedIdentifier(List<Integer> linkedIdentifiers) {
+		if (linkedIdentifiers == null) {
+			return -1;
+		}
+		if (linkedIdentifiers.isEmpty()) {
+			return -2;
+		}
+		int i = getRandomInt(linkedIdentifiers.size());
+		return linkedIdentifiers.get(i);
 	}
 
 }
