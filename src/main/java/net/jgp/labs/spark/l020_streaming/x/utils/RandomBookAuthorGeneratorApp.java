@@ -1,5 +1,10 @@
 package net.jgp.labs.spark.l020_streaming.x.utils;
 
+import net.jgp.labs.spark.x.record_generator.RecordGeneratorUtils;
+import net.jgp.labs.spark.x.record_generator.RecordStructure;
+import net.jgp.labs.spark.x.record_generator.RecordType;
+import net.jgp.labs.spark.x.record_generator.RecordWriterUtils;
+
 public class RandomBookAuthorGeneratorApp {
 
 	public static void main(String[] args) {

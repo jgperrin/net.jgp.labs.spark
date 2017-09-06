@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l020_streaming.x.utils;
+package net.jgp.labs.spark.x.record_generator;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
