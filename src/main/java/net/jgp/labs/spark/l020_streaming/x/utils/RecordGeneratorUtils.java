@@ -1,5 +1,8 @@
 package net.jgp.labs.spark.l020_streaming.x.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ public abstract class RecordGeneratorUtils {
 	private static String[] adjectives = { "", "Great", "Beautiful", "Better", "Worse", "Gorgeous", "Terrific",
 			"Terrible", "Natural", "Wild" };
 	private static String[] nouns = { "Life", "Trip", "Experience", "Work", "Job", "Beach" };
+	private static int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	public static String getRandomSSN() {
 		return "" + getRandomInt(10) + getRandomInt(10) + getRandomInt(10) + "-" + getRandomInt(10) + getRandomInt(10)
@@ -69,6 +73,17 @@ public abstract class RecordGeneratorUtils {
 		}
 		int i = getRandomInt(linkedIdentifiers.size());
 		return linkedIdentifiers.get(i);
+	}
+
+	public static String getLivingPersonDateOfBirth(String format) {
+		Calendar d = Calendar.getInstance();
+		int year = d.get(Calendar.YEAR) - getRandomInt(120) + 15;
+		int month = getRandomInt(12);
+		int day = getRandomInt(daysInMonth[month]) + 1;
+		d.set(year, month, day);
+
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(d.getTime());
 	}
 
 }

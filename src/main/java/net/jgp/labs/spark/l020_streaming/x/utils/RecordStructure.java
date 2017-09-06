@@ -8,7 +8,7 @@ import java.util.Map;
 public class RecordStructure {
 
 	private String recordName;
-	private LinkedHashMap<String, RecordType> columns;
+	private LinkedHashMap<String, ColumnProperty> columns;
 	private List<Integer> identifiers;
 	private RecordStructure linkedRecord;
 
@@ -28,14 +28,19 @@ public class RecordStructure {
 	}
 
 	public void add(String columnName, RecordType recordType) {
-		this.columns.put(columnName, recordType);
+		add(columnName, recordType, null);
+	}
+
+	public void add(String columnName, RecordType recordType, String option) {
+		ColumnProperty cp = new ColumnProperty(recordType, option);
+		this.columns.put(columnName, cp);
 	}
 
 	public StringBuilder getRecords(int recordCount, boolean header) {
 		StringBuilder record = new StringBuilder();
 		boolean first = true;
 		if (header) {
-			for (Map.Entry<String, RecordType> entry : this.columns.entrySet()) {
+			for (Map.Entry<String, ColumnProperty> entry : this.columns.entrySet()) {
 				if (first) {
 					first = false;
 				} else {
@@ -48,13 +53,13 @@ public class RecordStructure {
 		}
 
 		for (int i = 0; i < recordCount; i++) {
-			for (Map.Entry<String, RecordType> entry : this.columns.entrySet()) {
+			for (Map.Entry<String, ColumnProperty> entry : this.columns.entrySet()) {
 				if (first) {
 					first = false;
 				} else {
 					record.append(',');
 				}
-				switch (entry.getValue()) {
+				switch (entry.getValue().getRecordType()) {
 				case FIRST_NAME:
 					record.append(RecordGeneratorUtils.getFirstName());
 					break;
@@ -82,6 +87,8 @@ public class RecordStructure {
 						record.append(RecordGeneratorUtils.getLinkedIdentifier(this.linkedRecord.identifiers));
 					}
 					break;
+				case DATE_LIVING_PERSON:
+					record.append(RecordGeneratorUtils.getLivingPersonDateOfBirth(entry.getValue().getOption()));
 				default:
 					break;
 				}

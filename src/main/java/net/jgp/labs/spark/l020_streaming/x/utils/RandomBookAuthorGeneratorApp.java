@@ -8,6 +8,7 @@ public class RandomBookAuthorGeneratorApp {
 		rsAuthor.add("id", RecordType.ID);
 		rsAuthor.add("fname", RecordType.FIRST_NAME);
 		rsAuthor.add("lname", RecordType.LAST_NAME);
+		rsAuthor.add("dob", RecordType.DATE_LIVING_PERSON, "MM/dd/yyyy");
 
 		RecordStructure rsBook = new RecordStructure("book", rsAuthor);
 		rsBook.add("id", RecordType.ID);
