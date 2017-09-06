@@ -3,28 +3,20 @@ package net.jgp.labs.spark.l020_streaming.x.utils;
 public class RandomRecordGeneratorApp {
 
 	public static void main(String[] args) {
+		RecordStructure rs = new RecordStructure("contact");
+		rs.add("fname", RecordType.FIRST_NAME);
+		rs.add("lname", RecordType.LAST_NAME);
+		rs.add("age", RecordType.AGE);
+		rs.add("ssn", RecordType.SSN);
+
 		RandomRecordGeneratorApp app = new RandomRecordGeneratorApp();
-		app.start();
+		app.start(rs);
 	}
 
-	private void start() {
-		StringBuilder record = new StringBuilder();
+	private void start(RecordStructure rs) {
 		int maxRecord = RecordGeneratorUtils.getRandomInt(10) + 1;
-		for (int i = 0; i < maxRecord; i++) {
-			String fname = RecordGeneratorUtils.getFirstName();
-			record.append(fname);
-			String lname = RecordGeneratorUtils.getLastName();
-			record.append(',');
-			record.append(lname);
-			int age = RecordGeneratorUtils.getRandomInt(114) + 1;
-			record.append(',');
-			record.append(age);
-			String ssn = RecordGeneratorUtils.getRandomSSN();
-			record.append(',');
-			record.append(ssn);
-			record.append('\n');
-		}
-		RecordWriterUtils.write("contact_" + System.currentTimeMillis() + ".txt", record);
+		RecordWriterUtils.write(rs.getRecordName() + "_" + System.currentTimeMillis() + ".txt",
+				rs.getRecords(maxRecord, true));
 	}
 
 }

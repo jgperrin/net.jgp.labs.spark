@@ -7,10 +7,12 @@ import java.io.IOException;
 public abstract class RecordWriterUtils {
 
 	public static void write(String filename, StringBuilder record) {
+		String fullFilename = StreamingUtils.getInputDirectory() + filename;
+		
 		// Open file
 		BufferedWriter out = null;
 		try {
-			FileWriter fstream = new FileWriter(StreamingUtils.getInputDirectory() + filename, true); // true
+			FileWriter fstream = new FileWriter(fullFilename, true); // true
 			// tells
 			// to
 			// append
