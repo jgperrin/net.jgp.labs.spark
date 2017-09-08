@@ -15,6 +15,8 @@ import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import org.apache.spark.streaming.*;
 import org.apache.spark.streaming.api.java.*;
+
+import net.jgp.labs.spark.l020_streaming.x.utils.JavaSparkSessionSingleton;
 import scala.Tuple2;
 
 public class StreamingIngestionFileSystemTextFileToDataframeApp implements Serializable {
@@ -68,13 +70,4 @@ public class StreamingIngestionFileSystemTextFileToDataframeApp implements Seria
 	}
 }
 
-class JavaSparkSessionSingleton {
-	private static transient SparkSession instance = null;
 
-	public static SparkSession getInstance(SparkConf sparkConf) {
-		if (instance == null) {
-			instance = SparkSession.builder().config(sparkConf).getOrCreate();
-		}
-		return instance;
-	}
-}

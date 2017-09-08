@@ -1,23 +1,24 @@
 package net.jgp.labs.spark.l020_streaming.l000_filesystem_text;
 
 import java.io.Serializable;
-import java.util.List;
 
-import org.apache.spark.*;
+import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.function.*;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SparkSession;
-import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.DataTypes;	
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
-import org.apache.spark.streaming.*;
-import org.apache.spark.streaming.api.java.*;
+import org.apache.spark.streaming.Durations;
+import org.apache.spark.streaming.api.java.JavaDStream;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
+import net.jgp.labs.spark.l020_streaming.x.utils.JavaSparkSessionSingleton;
 import net.jgp.labs.spark.l020_streaming.x.utils.StreamingUtils;
-import scala.Tuple2;
 
 public class StreamingIngestionFileSystemTextFileApp implements Serializable {
 	private static final long serialVersionUID = 6795623748995704732L;
@@ -68,16 +69,5 @@ public class StreamingIngestionFileSystemTextFileApp implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-}
-
-class JavaSparkSessionSingleton {
-	private static transient SparkSession instance = null;
-
-	public static SparkSession getInstance(SparkConf sparkConf) {
-		if (instance == null) {
-			instance = SparkSession.builder().config(sparkConf).getOrCreate();
-		}
-		return instance;
 	}
 }
