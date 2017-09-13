@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l020_streaming.l000_filesystem_text;
+package net.jgp.labs.spark.l020_dstream.l000_filesystem_text;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l020_streaming.l020_filesystem_text_dataframe_class;
+package net.jgp.labs.spark.l020_dstream.l020_filesystem_text_dataframe_class;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.Function;

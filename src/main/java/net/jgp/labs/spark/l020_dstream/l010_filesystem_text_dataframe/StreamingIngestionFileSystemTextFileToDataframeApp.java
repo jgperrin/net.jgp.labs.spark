@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l020_streaming.l010_filesystem_text_dataframe;
+package net.jgp.labs.spark.l020_dstream.l010_filesystem_text_dataframe;
 
 import java.io.Serializable;
 
