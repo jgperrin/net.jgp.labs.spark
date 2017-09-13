@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.x.record_generator;
+package net.jgp.labs.spark.x.app.record_generator;
 
 public class ColumnProperty {
 

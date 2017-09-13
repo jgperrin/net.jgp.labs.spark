@@ -1,9 +1,9 @@
-package net.jgp.labs.spark.l020_streaming.x.utils;
+package net.jgp.labs.spark.x.utils.streaming;
 
-import net.jgp.labs.spark.x.record_generator.RecordGeneratorUtils;
-import net.jgp.labs.spark.x.record_generator.RecordStructure;
-import net.jgp.labs.spark.x.record_generator.RecordType;
-import net.jgp.labs.spark.x.record_generator.RecordWriterUtils;
+import net.jgp.labs.spark.x.app.record_generator.RecordGeneratorUtils;
+import net.jgp.labs.spark.x.app.record_generator.RecordStructure;
+import net.jgp.labs.spark.x.app.record_generator.RecordType;
+import net.jgp.labs.spark.x.app.record_generator.RecordWriterUtils;
 
 public class RandomRecordGeneratorApp {
 

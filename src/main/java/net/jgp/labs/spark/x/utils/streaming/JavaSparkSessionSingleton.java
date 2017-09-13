@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l020_streaming.x.utils;
+package net.jgp.labs.spark.x.utils.streaming;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.SparkSession;

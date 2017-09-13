@@ -1,10 +1,10 @@
-package net.jgp.labs.spark.x.record_generator;
+package net.jgp.labs.spark.x.app.record_generator;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import net.jgp.labs.spark.l020_streaming.x.utils.StreamingUtils;
+import net.jgp.labs.spark.x.utils.streaming.StreamingUtils;
 
 public abstract class RecordWriterUtils {
 

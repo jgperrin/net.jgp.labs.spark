@@ -17,8 +17,8 @@ import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
-import net.jgp.labs.spark.l020_streaming.x.utils.JavaSparkSessionSingleton;
-import net.jgp.labs.spark.l020_streaming.x.utils.StreamingUtils;
+import net.jgp.labs.spark.x.utils.streaming.JavaSparkSessionSingleton;
+import net.jgp.labs.spark.x.utils.streaming.StreamingUtils;
 
 public class StreamingIngestionFileSystemTextFileApp implements Serializable {
 	private static final long serialVersionUID = 6795623748995704732L;
