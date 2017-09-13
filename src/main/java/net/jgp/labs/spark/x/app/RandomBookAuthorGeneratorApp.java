@@ -1,9 +1,9 @@
-package net.jgp.labs.spark.x.utils.streaming;
+package net.jgp.labs.spark.x.app;
 
-import net.jgp.labs.spark.x.app.record_generator.RecordGeneratorUtils;
-import net.jgp.labs.spark.x.app.record_generator.RecordStructure;
-import net.jgp.labs.spark.x.app.record_generator.RecordType;
-import net.jgp.labs.spark.x.app.record_generator.RecordWriterUtils;
+import net.jgp.labs.spark.x.utils.record_generator.RecordGeneratorUtils;
+import net.jgp.labs.spark.x.utils.record_generator.RecordStructure;
+import net.jgp.labs.spark.x.utils.record_generator.RecordType;
+import net.jgp.labs.spark.x.utils.record_generator.RecordWriterUtils;
 
 public class RandomBookAuthorGeneratorApp {
 

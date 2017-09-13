@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.x.app.record_generator;
+package net.jgp.labs.spark.x.utils.record_generator;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

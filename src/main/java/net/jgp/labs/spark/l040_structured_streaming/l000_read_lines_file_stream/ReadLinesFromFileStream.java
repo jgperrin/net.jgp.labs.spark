@@ -40,7 +40,7 @@ public class ReadLinesFromFileStream {
 			log.error("Exception while waiting for query to end {}.", e.getMessage(), e);
 		}
 
-		// In this case everything is a string
+		// Never executed
 		df.show();
 		df.printSchema();
 	}
