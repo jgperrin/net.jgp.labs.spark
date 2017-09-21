@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l801_concurrency_in_progress;
+package net.jgp.labs.spark.l811_concurrency_in_progress;
 
 import org.apache.spark.sql.SparkSession;
 

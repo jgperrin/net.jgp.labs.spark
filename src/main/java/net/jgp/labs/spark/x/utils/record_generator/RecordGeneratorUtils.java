@@ -2,7 +2,6 @@ package net.jgp.labs.spark.x.utils.record_generator;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,9 +12,10 @@ import java.util.List;
 public abstract class RecordGeneratorUtils {
 
 	private static String[] fnames = { "John", "Kevin", "Lydia", "Nathan", "Jane", "Liz", "Sam", "Ruby", "Peter",
-			"Mahendra", "Noah", "Noemie", "Fred", "Anupam", "Stephanie", "Ken", "Sam", "Murthy", "Jonathan" };
+			"Mahendra", "Noah", "Noemie", "Fred", "Anupam", "Stephanie", "Ken", "Sam", "Murthy", "Jonathan", "Jean",
+			"Georges", "Oliver" };
 	private static String[] lnames = { "Smith", "Mills", "Perrin", "Foster", "Kumar", "Jones", "Tutt", "Main", "Haque",
-			"Christie", "Khan", "Kahn", "Hahn" };
+			"Christie", "Khan", "Kahn", "Hahn", "Sanders" };
 	private static String[] articles = { "The", "My", "A", "Your", "Their" };
 	private static String[] adjectives = { "", "Great", "Beautiful", "Better", "Worse", "Gorgeous", "Terrific",
 			"Terrible", "Natural", "Wild" };
