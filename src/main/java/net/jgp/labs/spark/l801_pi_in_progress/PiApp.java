@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l800_pi;
+package net.jgp.labs.spark.l801_pi_in_progress;
 
 import java.util.ArrayList;
 import java.util.List;
