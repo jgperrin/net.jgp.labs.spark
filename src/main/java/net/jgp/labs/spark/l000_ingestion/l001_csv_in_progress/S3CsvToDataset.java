@@ -15,7 +15,7 @@ public class S3CsvToDataset {
         SparkSession spark = SparkSession.builder().appName("CSV on S3 to Dataset<Row>")
                 .master("local").getOrCreate();
 
-        String filename = "s3a://lumeris.data.platform.nonprod/PanamaCanal/dev/data/claim/EHIODS_0_1000_CLAIM_DTL";
+        String filename = "s3a://<bucket>/<key>";
         Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true")
                 .option("header", "false")
                 .load(filename);
