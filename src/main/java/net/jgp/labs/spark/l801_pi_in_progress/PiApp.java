@@ -28,6 +28,7 @@ public class PiApp {
                 .config("spark.executor.cores", "1")
                 .config("spark.cores.max", "2")
                 .config("spark.driver.host", "10.0.100.182")
+                .config("spark.executor.extraClassPath", "/home/jgp/net.jgp.labs.spark/target/labs-spark-2.2.0-jar-with-dependencies.jar")
                 .getOrCreate();
 
         JavaSparkContext jsc = new JavaSparkContext(spark.sparkContext());
