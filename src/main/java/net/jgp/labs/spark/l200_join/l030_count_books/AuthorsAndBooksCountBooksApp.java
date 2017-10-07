@@ -12,8 +12,9 @@ public class AuthorsAndBooksCountBooksApp {
     }
 
     private void start() {
-        SparkSession spark = SparkSession.builder().appName("Authors and Books").master(
-                "local").getOrCreate();
+        SparkSession spark = SparkSession.builder()
+                .appName("Authors and Books")
+                .master("local").getOrCreate();
 
         String filename = "data/authors.csv";
         Dataset<Row> authorsDf = spark.read()
