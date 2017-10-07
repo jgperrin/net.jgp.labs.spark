@@ -4,11 +4,11 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-public class CsvToDataset {
+public class CsvToDatasetApp {
 
     public static void main(String[] args) {
         System.out.println("Working directory = " + System.getProperty("user.dir"));
-        CsvToDataset app = new CsvToDataset();
+        CsvToDatasetApp app = new CsvToDatasetApp();
         app.start();
     }
 
