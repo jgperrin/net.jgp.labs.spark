@@ -1,17 +1,13 @@
-
-
-
-
-package net.jgp.labs.spark.l200_join.l020;
+package net.jgp.labs.spark.l200_join.l030_count_books;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-public class AuthorsAndBooksWithDates {
+public class AuthorsAndBooksCountBooksApp {
 
     public static void main(String[] args) {
-        AuthorsAndBooksWithDates app = new AuthorsAndBooksWithDates();
+        AuthorsAndBooksCountBooksApp app = new AuthorsAndBooksCountBooksApp();
         app.start();
     }
 
@@ -24,7 +20,6 @@ public class AuthorsAndBooksWithDates {
                 .format("csv")
                 .option("inferSchema", "true")
                 .option("header", "true")
-                .option("dateFormat", "mm/dd/yy")
                 .load(filename);
         authorsDf.show();
 
@@ -37,13 +32,19 @@ public class AuthorsAndBooksWithDates {
         booksDf.show();
 
         Dataset<Row> libraryDf = authorsDf
-                .join(booksDf, authorsDf.col("id").equalTo(booksDf.col("authorId")),
-                        "full_outer")
+                .join(
+                        booksDf,
+                        authorsDf.col("id").equalTo(booksDf.col("authorId")),
+                        "left")
                 .withColumn("bookId", booksDf.col("id"))
-                .drop(booksDf.col("id"));
+                .drop(booksDf.col("id"))
+                .groupBy(
+                        authorsDf.col("id"),
+                        authorsDf.col("name"),
+                        authorsDf.col("link"))
+                .count();
 
         libraryDf.show();
         libraryDf.printSchema();
     }
 }
-
