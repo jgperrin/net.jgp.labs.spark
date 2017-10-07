@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l000_ingestion.l000_csv;
+package net.jgp.labs.spark.l000_ingestion.l090_other_csv;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
