@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class BuildDataFrameFromScratch2 {
-	private static Logger log = LoggerFactory.getLogger(BuildDataFrameFromScratch2.class);
+	private static transient Logger log = LoggerFactory.getLogger(BuildDataFrameFromScratch2.class);
 
 	public static void main(String[] args) {
 		BuildDataFrameFromScratch2 app = new BuildDataFrameFromScratch2();

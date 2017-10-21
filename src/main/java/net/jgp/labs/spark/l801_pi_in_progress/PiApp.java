@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import net.jgp.labs.spark.x.datasource.SubStringCounterDataSource;
 
 public class PiApp {
-    private static Logger log = LoggerFactory.getLogger(SubStringCounterDataSource.class);
+    private static transient Logger log = LoggerFactory.getLogger(SubStringCounterDataSource.class);
     private static final int NUM_SAMPLES = 10;
 
     public static void main(String[] args) {
