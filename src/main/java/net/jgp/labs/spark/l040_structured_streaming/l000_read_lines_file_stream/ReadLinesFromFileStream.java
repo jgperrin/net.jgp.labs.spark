@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import net.jgp.labs.spark.x.utils.streaming.StreamingUtils;
 
 public class ReadLinesFromFileStream {
-    private static Logger log = LoggerFactory.getLogger(ReadLinesFromFileStream.class);
+    private static transient Logger log = LoggerFactory.getLogger(ReadLinesFromFileStream.class);
 
     public static void main(String[] args) {
         ReadLinesFromFileStream app = new ReadLinesFromFileStream();
