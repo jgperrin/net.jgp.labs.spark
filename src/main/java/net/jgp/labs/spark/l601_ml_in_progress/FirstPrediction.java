@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l600_ml;
+package net.jgp.labs.spark.l601_ml_in_progress;
 
 import org.apache.spark.mllib.linalg.VectorUDT;
 import org.apache.spark.sql.SparkSession;
