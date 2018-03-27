@@ -6,7 +6,7 @@ These labs rely on:
 * Java 8
 
 ## Notes on Branches
-The master branch will always contain the latest version of Spark, currently v2.2.0.
+The master branch will always contain the latest version of Spark, currently v2.2.1.
 
 ## Labs
 A few labs around Apache Spark, exclusively in Java.
