@@ -9,6 +9,7 @@
   <properties>
     <scala.version>2.11</scala.version>
     <spark.version>2.3.0</spark.version>
+    <postgresql.version>42.1.4</postgresql.version>
   </properties>
 
   <dependencies>
