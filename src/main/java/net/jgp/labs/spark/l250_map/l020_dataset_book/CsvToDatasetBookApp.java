@@ -11,7 +11,7 @@ import org.apache.spark.sql.SparkSession;
 
 import net.jgp.labs.spark.x.model.Book;
 
-public class CsvToDatasetBook implements Serializable {
+public class CsvToDatasetBookApp implements Serializable {
   private static final long serialVersionUID = 4262746489728980066L;
 
   class BookMapper implements MapFunction<Row, Book> {
@@ -36,7 +36,7 @@ public class CsvToDatasetBook implements Serializable {
   }
 
   public static void main(String[] args) {
-    CsvToDatasetBook app = new CsvToDatasetBook();
+    CsvToDatasetBookApp app = new CsvToDatasetBookApp();
     app.start();
   }
 

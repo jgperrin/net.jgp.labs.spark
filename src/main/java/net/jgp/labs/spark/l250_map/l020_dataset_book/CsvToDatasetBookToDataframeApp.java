@@ -9,7 +9,7 @@ import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import net.jgp.labs.spark.l250_map.l020_dataset_book.CsvToDatasetBook.BookMapper;
+import net.jgp.labs.spark.l250_map.l020_dataset_book.CsvToDatasetBookApp.BookMapper;
 import net.jgp.labs.spark.x.model.Book;
 
 public class CsvToDatasetBookToDataframeApp implements Serializable {
