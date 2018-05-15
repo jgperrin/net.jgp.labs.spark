@@ -9,9 +9,10 @@ import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+import net.jgp.labs.spark.l250_map.l020_dataset_book.CsvToDatasetBook.BookMapper;
 import net.jgp.labs.spark.x.model.Book;
 
-public class CsvToDatasetBook implements Serializable {
+public class CsvToDatasetBookToDataframeApp implements Serializable {
   private static final long serialVersionUID = 4262746489728980066L;
 
   class BookMapper implements MapFunction<Row, Book> {
@@ -36,7 +37,7 @@ public class CsvToDatasetBook implements Serializable {
   }
 
   public static void main(String[] args) {
-    CsvToDatasetBook app = new CsvToDatasetBook();
+    CsvToDatasetBookToDataframeApp app = new CsvToDatasetBookToDataframeApp();
     app.start();
   }
 
@@ -54,5 +55,9 @@ public class CsvToDatasetBook implements Serializable {
     Dataset<Book> bookDs = df.map(new BookMapper(), Encoders.bean(Book.class));
     bookDs.show();
     bookDs.printSchema();
+    
+    Dataset<Row> df2 = bookDs.toDF();
+    df2.show();
+    df2.printSchema();
   }
 }
