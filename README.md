@@ -2,6 +2,12 @@
 
 If you want to know more, and be guided through your Java and Spark process, I can only recommend my book at Manning: Spark with Java. Find out more about [Spark with Java on the Manning website](https://www.manning.com/books/spark-with-java). The book contains more examples, more explanation, is professionally written and edited.
 
+[Chapter 1](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch01) is an introduction to Spark and deals with basic ingestion examples.
+
+[Chapter 2](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch02) helps you build a mental model around Spark.
+
+[Chapter 3](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch03) WIP.
+
 ## Environment
 These labs rely on:
 * Apache Spark 2.3.0 (based on Scala 2.11)
