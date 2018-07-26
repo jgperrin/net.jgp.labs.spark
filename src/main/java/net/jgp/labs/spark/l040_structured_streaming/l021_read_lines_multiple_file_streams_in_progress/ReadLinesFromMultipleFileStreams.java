@@ -12,36 +12,41 @@ import org.slf4j.LoggerFactory;
 import net.jgp.labs.spark.x.utils.streaming.StreamingUtils;
 
 public class ReadLinesFromMultipleFileStreams {
-	private static transient Logger log = LoggerFactory.getLogger(ReadLinesFromMultipleFileStreams.class);
+  private static transient Logger log = LoggerFactory.getLogger(
+      ReadLinesFromMultipleFileStreams.class);
 
-	public static void main(String[] args) {
-		ReadLinesFromMultipleFileStreams app = new ReadLinesFromMultipleFileStreams();
-		app.start();
-	}
+  public static void main(String[] args) {
+    ReadLinesFromMultipleFileStreams app =
+        new ReadLinesFromMultipleFileStreams();
+    app.start();
+  }
 
-	private void start() {
-		log.debug("-> start()");
+  private void start() {
+    log.debug("-> start()");
 
-		SparkSession spark = SparkSession.builder().appName("Read lines over a file stream").master("local")
-				.getOrCreate();
+    SparkSession spark = SparkSession.builder().appName(
+        "Read lines over a file stream").master("local")
+        .getOrCreate();
 
-		// @formatter:off
+    // @formatter:off
 		Dataset<Row> df = spark
 				.readStream()
 				.format("text")
 				.load(StreamingUtils.getInputDirectory());
 		// @formatter:on
 
-		StreamingQuery query = df.writeStream().outputMode(OutputMode.Update()).format("console").start();
+    StreamingQuery query = df.writeStream().outputMode(OutputMode.Update())
+        .format("console").start();
 
-		try {
-			query.awaitTermination();
-		} catch (StreamingQueryException e) {
-			log.error("Exception while waiting for query to end {}.", e.getMessage(), e);
-		}
+    try {
+      query.awaitTermination();
+    } catch (StreamingQueryException e) {
+      log.error("Exception while waiting for query to end {}.", e.getMessage(),
+          e);
+    }
 
-		// In this case everything is a string
-		df.show();
-		df.printSchema();
-	}
+    // In this case everything is a string
+    df.show();
+    df.printSchema();
+  }
 }

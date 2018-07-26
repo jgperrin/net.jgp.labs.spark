@@ -16,26 +16,27 @@ import org.apache.spark.sql.SparkSession;
  */
 public class JsonArrayToDataset {
 
-	public static void main(String[] args) {
-		System.out.println("Working directory = " + System.getProperty("user.dir"));
-		JsonArrayToDataset app = new JsonArrayToDataset();
-		app.start();
-	}
+  public static void main(String[] args) {
+    System.out.println("Working directory = " + System.getProperty("user.dir"));
+    JsonArrayToDataset app = new JsonArrayToDataset();
+    app.start();
+  }
 
-	private void start() {
-		SparkSession spark = SparkSession.builder().appName("JSON array to Dataset").master("local").getOrCreate();
+  private void start() {
+    SparkSession spark = SparkSession.builder().appName("JSON array to Dataset")
+        .master("local").getOrCreate();
 
-		String filename = "data/array.json";
-		long start = System.currentTimeMillis();
-		Dataset<Row> df = spark.read().json(filename);
-		long stop = System.currentTimeMillis();
-		System.out.println("Processing took " + (stop - start) + " ms");
-		df.show();
-		df.printSchema();
+    String filename = "data/array.json";
+    long start = System.currentTimeMillis();
+    Dataset<Row> df = spark.read().json(filename);
+    long stop = System.currentTimeMillis();
+    System.out.println("Processing took " + (stop - start) + " ms");
+    df.show();
+    df.printSchema();
 
-		// Turns the "one liner" into a real column
-		df = df.select(explode(df.col("valsInArrays"))).toDF("vals");
-		df.show();
-		df.printSchema();
-	}
+    // Turns the "one liner" into a real column
+    df = df.select(explode(df.col("valsInArrays"))).toDF("vals");
+    df.show();
+    df.printSchema();
+  }
 }

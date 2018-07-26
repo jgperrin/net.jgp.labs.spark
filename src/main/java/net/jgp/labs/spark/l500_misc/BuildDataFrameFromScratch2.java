@@ -24,38 +24,42 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class BuildDataFrameFromScratch2 {
-	private static transient Logger log = LoggerFactory.getLogger(BuildDataFrameFromScratch2.class);
+  private static transient Logger log = LoggerFactory.getLogger(
+      BuildDataFrameFromScratch2.class);
 
-	public static void main(String[] args) {
-		BuildDataFrameFromScratch2 app = new BuildDataFrameFromScratch2();
-		app.start();
-	}
+  public static void main(String[] args) {
+    BuildDataFrameFromScratch2 app = new BuildDataFrameFromScratch2();
+    app.start();
+  }
 
-	private void start() {
-		SparkSession spark = SparkSession.builder().appName("Build a DataFrame from Scratch").master("local[*]")
-				.getOrCreate();
+  private void start() {
+    SparkSession spark = SparkSession.builder().appName(
+        "Build a DataFrame from Scratch").master("local[*]")
+        .getOrCreate();
 
-		List<String[]> stringAsList = new ArrayList<>();
-		stringAsList.add(new String[] { "bar1.1", "bar2.1" });
-		stringAsList.add(new String[] { "bar1.2", "bar2.2" });
+    List<String[]> stringAsList = new ArrayList<>();
+    stringAsList.add(new String[] { "bar1.1", "bar2.1" });
+    stringAsList.add(new String[] { "bar1.2", "bar2.2" });
 
-		JavaSparkContext sparkContext = new JavaSparkContext(spark.sparkContext());
+    JavaSparkContext sparkContext = new JavaSparkContext(spark.sparkContext());
 
-		JavaRDD<Row> rowRDD = sparkContext.parallelize(stringAsList).map((String[] row) -> RowFactory.create(row));
+    JavaRDD<Row> rowRDD = sparkContext.parallelize(stringAsList).map((
+        String[] row) -> RowFactory.create(row));
 
-		// Creates schema
-		StructType schema = DataTypes
-				.createStructType(new StructField[] { DataTypes.createStructField("foe1", DataTypes.StringType, false),
-						DataTypes.createStructField("foe2", DataTypes.StringType, false) });
+    // Creates schema
+    StructType schema = DataTypes
+        .createStructType(new StructField[] { DataTypes.createStructField(
+            "foe1", DataTypes.StringType, false),
+            DataTypes.createStructField("foe2", DataTypes.StringType, false) });
 
-		Dataset<Row> df = spark.sqlContext().createDataFrame(rowRDD, schema).toDF();
+    Dataset<Row> df = spark.sqlContext().createDataFrame(rowRDD, schema).toDF();
 
-		log.debug("** Schema: ");
-		df.printSchema();
+    log.debug("** Schema: ");
+    df.printSchema();
 
-		log.debug("** Data: ");
-		df.show();
+    log.debug("** Data: ");
+    df.show();
 
-		sparkContext.close();
-	}
+    sparkContext.close();
+  }
 }

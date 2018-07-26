@@ -11,33 +11,36 @@ import org.apache.spark.sql.SparkSession;
 
 public class Loader {
 
-	public static void main(String[] args) {
-		Loader app = new Loader();
-		app.start();
-	}
+  public static void main(String[] args) {
+    Loader app = new Loader();
+    app.start();
+  }
 
-	private void start() {
-		SparkConf conf = new SparkConf().setAppName("Concurrency Lab 001").setMaster(Config.MASTER).set("hello", "world");
-		JavaSparkContext sc = new JavaSparkContext(conf);
-		SparkSession spark = SparkSession.builder().config(conf).getOrCreate();
-		
-		String filename = "data/tuple-data-file.csv";
-		Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true").option("header", "false")
-				.load(filename);
-		df.show();
+  private void start() {
+    SparkConf conf = new SparkConf().setAppName("Concurrency Lab 001")
+        .setMaster(Config.MASTER).set("hello", "world");
+    JavaSparkContext sc = new JavaSparkContext(conf);
+    SparkSession spark = SparkSession.builder().config(conf).getOrCreate();
 
-		try {
-			df.createGlobalTempView("myView");
-		} catch (AnalysisException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    String filename = "data/tuple-data-file.csv";
+    Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true")
+        .option("header", "false")
+        .load(filename);
+    df.show();
 
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			System.out.println("Hmmm... Something interrupted the thread: " + e.getMessage());
-		}
+    try {
+      df.createGlobalTempView("myView");
+    } catch (AnalysisException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
-	}
+    try {
+      Thread.sleep(10000);
+    } catch (InterruptedException e) {
+      System.out.println("Hmmm... Something interrupted the thread: " + e
+          .getMessage());
+    }
+
+  }
 }

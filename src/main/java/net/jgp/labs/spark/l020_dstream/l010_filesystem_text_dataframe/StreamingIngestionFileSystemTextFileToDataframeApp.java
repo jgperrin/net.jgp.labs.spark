@@ -20,57 +20,63 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import net.jgp.labs.spark.x.utils.streaming.JavaSparkSessionSingleton;
 import net.jgp.labs.spark.x.utils.streaming.StreamingUtils;
 
-public class StreamingIngestionFileSystemTextFileToDataframeApp implements Serializable {
-	private static final long serialVersionUID = 6795623748995704732L;
+public class StreamingIngestionFileSystemTextFileToDataframeApp implements
+    Serializable {
+  private static final long serialVersionUID = 6795623748995704732L;
 
-	public static void main(String[] args) {
-		StreamingIngestionFileSystemTextFileToDataframeApp app = new StreamingIngestionFileSystemTextFileToDataframeApp();
-		app.start();
-	}
+  public static void main(String[] args) {
+    StreamingIngestionFileSystemTextFileToDataframeApp app =
+        new StreamingIngestionFileSystemTextFileToDataframeApp();
+    app.start();
+  }
 
-	private void start() {
-		// Create a local StreamingContext with two working thread and batch interval of
-		// 1 second
-		SparkConf conf = new SparkConf().setMaster("local[2]").setAppName("Streaming Ingestion File System Text File to Dataframe");
-		JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(5));
+  private void start() {
+    // Create a local StreamingContext with two working thread and batch
+    // interval of
+    // 1 second
+    SparkConf conf = new SparkConf().setMaster("local[2]").setAppName(
+        "Streaming Ingestion File System Text File to Dataframe");
+    JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations
+        .seconds(5));
 
-		JavaDStream<String> msgDataStream = jssc.textFileStream(StreamingUtils.getInputDirectory());
+    JavaDStream<String> msgDataStream = jssc.textFileStream(StreamingUtils
+        .getInputDirectory());
 
-		msgDataStream.print();
-		// Create JavaRDD<Row>
-		msgDataStream.foreachRDD(new VoidFunction<JavaRDD<String>>() {
-			private static final long serialVersionUID = -590010339928376829L;
+    msgDataStream.print();
+    // Create JavaRDD<Row>
+    msgDataStream.foreachRDD(new VoidFunction<JavaRDD<String>>() {
+      private static final long serialVersionUID = -590010339928376829L;
 
-			@Override
-			public void call(JavaRDD<String> rdd) {
-				JavaRDD<Row> rowRDD = rdd.map(new Function<String, Row>() {
-					private static final long serialVersionUID = 5167089361335095997L;
+      @Override
+      public void call(JavaRDD<String> rdd) {
+        JavaRDD<Row> rowRDD = rdd.map(new Function<String, Row>() {
+          private static final long serialVersionUID = 5167089361335095997L;
 
-					@Override
-					public Row call(String msg) {
-						Row row = RowFactory.create(msg);
-						return row;
-					}
-				});
-				// Create Schema
-				StructType schema = DataTypes.createStructType(
-						new StructField[] { DataTypes.createStructField("Message", DataTypes.StringType, true) });
-				
-				// Get Spark 2.0 session
-				SparkSession spark = JavaSparkSessionSingleton.getInstance(rdd.context().getConf());
-				Dataset<Row> msgDataFrame = spark.createDataFrame(rowRDD, schema);
-				msgDataFrame.show();
-			}
-		});
+          @Override
+          public Row call(String msg) {
+            Row row = RowFactory.create(msg);
+            return row;
+          }
+        });
+        // Create Schema
+        StructType schema = DataTypes.createStructType(
+            new StructField[] { DataTypes.createStructField("Message",
+                DataTypes.StringType, true) });
 
-		jssc.start();
-		try {
-			jssc.awaitTermination();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+        // Get Spark 2.0 session
+        SparkSession spark = JavaSparkSessionSingleton.getInstance(rdd.context()
+            .getConf());
+        Dataset<Row> msgDataFrame = spark.createDataFrame(rowRDD, schema);
+        msgDataFrame.show();
+      }
+    });
+
+    jssc.start();
+    try {
+      jssc.awaitTermination();
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
 }
-
-

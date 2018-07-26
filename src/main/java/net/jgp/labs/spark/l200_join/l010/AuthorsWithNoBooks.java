@@ -12,8 +12,9 @@ public class AuthorsWithNoBooks {
   }
 
   private void start() {
-    SparkSession spark = SparkSession.builder().appName("Authors and Books").master(
-        "local").getOrCreate();
+    SparkSession spark = SparkSession.builder().appName("Authors and Books")
+        .master(
+            "local").getOrCreate();
 
     String filename = "data/authors.csv";
     // @formatter:off
@@ -32,8 +33,9 @@ public class AuthorsWithNoBooks {
         .option("header", "true")
         .load(filename);
     // @formatter:on
-    
-    Dataset<Row> libraryDf = authorsDf.join(booksDf, authorsDf.col("id").equalTo(booksDf.col("authorId")), "left_anti");    
+
+    Dataset<Row> libraryDf = authorsDf.join(booksDf, authorsDf.col("id")
+        .equalTo(booksDf.col("authorId")), "left_anti");
     libraryDf.show();
     libraryDf.printSchema();
   }

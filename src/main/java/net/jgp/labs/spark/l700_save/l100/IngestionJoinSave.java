@@ -12,8 +12,9 @@ public class IngestionJoinSave {
   }
 
   private void start() {
-    SparkSession spark = SparkSession.builder().appName("Authors and Books").master(
-        "local").getOrCreate();
+    SparkSession spark = SparkSession.builder().appName("Authors and Books")
+        .master(
+            "local").getOrCreate();
 
     String filename = "data/authors.csv";
     // @formatter:off

@@ -9,19 +9,22 @@ import org.apache.spark.sql.types.StructType;
 
 public class FirstPrediction {
 
-	public static void main(String[] args) {
-		FirstPrediction fp = new FirstPrediction();
-		fp.start();
-	}
+  public static void main(String[] args) {
+    FirstPrediction fp = new FirstPrediction();
+    fp.start();
+  }
 
-	private void start() {
-		SparkSession spark = SparkSession.builder().appName("First Prediction").master("local").getOrCreate();
+  private void start() {
+    SparkSession spark = SparkSession.builder().appName("First Prediction")
+        .master("local").getOrCreate();
 
-		StructType schema = new StructType(
-				new StructField[] { new StructField("label", DataTypes.DoubleType, false, Metadata.empty()),
-						new StructField("features", new VectorUDT(), false, Metadata.empty()), });
+    StructType schema = new StructType(
+        new StructField[] { new StructField("label", DataTypes.DoubleType,
+            false, Metadata.empty()),
+            new StructField("features", new VectorUDT(), false, Metadata
+                .empty()), });
 
-		// TODO this example is not working yet
-	}
+    // TODO this example is not working yet
+  }
 
 }

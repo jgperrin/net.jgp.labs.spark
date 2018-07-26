@@ -6,19 +6,21 @@ import org.apache.spark.sql.SparkSession;
 
 public class QuotedCsvWithHeaderToDataset {
 
-	public static void main(String[] args) {
-		System.out.println("Working directory = " + System.getProperty("user.dir"));
-		QuotedCsvWithHeaderToDataset app = new QuotedCsvWithHeaderToDataset();
-		app.start();
-	}
+  public static void main(String[] args) {
+    System.out.println("Working directory = " + System.getProperty("user.dir"));
+    QuotedCsvWithHeaderToDataset app = new QuotedCsvWithHeaderToDataset();
+    app.start();
+  }
 
-	private void start() {
-		SparkSession spark = SparkSession.builder().appName("CSV to Dataset").master("local").getOrCreate();
+  private void start() {
+    SparkSession spark = SparkSession.builder().appName("CSV to Dataset")
+        .master("local").getOrCreate();
 
-		String filename = "data/csv-quoted.txt";
-		Dataset<Row> df = spark.read().option("inferSchema", "true").option("header", "true").csv(filename);
-		df.show();
-		df.printSchema();
+    String filename = "data/csv-quoted.txt";
+    Dataset<Row> df = spark.read().option("inferSchema", "true").option(
+        "header", "true").csv(filename);
+    df.show();
+    df.printSchema();
 
-	}
+  }
 }

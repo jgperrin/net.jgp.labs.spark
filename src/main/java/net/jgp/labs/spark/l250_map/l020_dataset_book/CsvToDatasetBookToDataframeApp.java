@@ -55,7 +55,7 @@ public class CsvToDatasetBookToDataframeApp implements Serializable {
     Dataset<Book> bookDs = df.map(new BookMapper(), Encoders.bean(Book.class));
     bookDs.show();
     bookDs.printSchema();
-    
+
     Dataset<Row> df2 = bookDs.toDF();
     df2.show();
     df2.printSchema();

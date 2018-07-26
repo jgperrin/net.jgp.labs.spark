@@ -24,36 +24,40 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class BuildDataFrameFromScratch {
-	private static transient Logger log = LoggerFactory.getLogger(BuildDataFrameFromScratch.class);
+  private static transient Logger log = LoggerFactory.getLogger(
+      BuildDataFrameFromScratch.class);
 
-	public static void main(String[] args) {
-		BuildDataFrameFromScratch app = new BuildDataFrameFromScratch();
-		app.start();
-	}
+  public static void main(String[] args) {
+    BuildDataFrameFromScratch app = new BuildDataFrameFromScratch();
+    app.start();
+  }
 
-	private void start() {
-		SparkSession spark = SparkSession.builder().appName("Build a DataFrame from Scratch").master("local[*]")
-				.getOrCreate();
+  private void start() {
+    SparkSession spark = SparkSession.builder().appName(
+        "Build a DataFrame from Scratch").master("local[*]")
+        .getOrCreate();
 
-		List<String> stringAsList = new ArrayList<>();
-		stringAsList.add("bar");
+    List<String> stringAsList = new ArrayList<>();
+    stringAsList.add("bar");
 
-		JavaSparkContext sparkContext = new JavaSparkContext(spark.sparkContext());
+    JavaSparkContext sparkContext = new JavaSparkContext(spark.sparkContext());
 
-		JavaRDD<Row> rowRDD = sparkContext.parallelize(stringAsList).map((String row) -> RowFactory.create(row));
+    JavaRDD<Row> rowRDD = sparkContext.parallelize(stringAsList).map((
+        String row) -> RowFactory.create(row));
 
-		// Creates schema
-		StructType schema = DataTypes.createStructType(
-				new StructField[] { DataTypes.createStructField("foe", DataTypes.StringType, false) });
+    // Creates schema
+    StructType schema = DataTypes.createStructType(
+        new StructField[] { DataTypes.createStructField("foe",
+            DataTypes.StringType, false) });
 
-		Dataset<Row> df = spark.sqlContext().createDataFrame(rowRDD, schema).toDF();
+    Dataset<Row> df = spark.sqlContext().createDataFrame(rowRDD, schema).toDF();
 
-		log.debug("** Schema: ");
-		df.printSchema();
+    log.debug("** Schema: ");
+    df.printSchema();
 
-		log.debug("** Data: ");
-		df.show();
+    log.debug("** Data: ");
+    df.show();
 
-		sparkContext.close();
-	}
+    sparkContext.close();
+  }
 }
