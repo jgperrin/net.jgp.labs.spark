@@ -4,7 +4,7 @@ Welcome to this project I started several years ago with this simple idea: let's
 
 
 > This project is evolving in a book, creatively named "**[Spark in Action (with Java)](https://www.manning.com/books/spark-with-java)**" published by Manning.
-> If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book at Manning: Spark with Java. Find out more about [Spark in Action (with Java) on the Manning website](https://www.manning.com/books/spark-with-java). The book contains more examples, more explanation, is professionally written and edited.
+> If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book. Find out more about [Spark in Action (with Java) on the Manning website](https://www.manning.com/books/spark-with-java). The book contains more examples, more explanation, is professionally edited.
 
 In the meanwhile, this project is still live, with more raw-level examples, that may (or may not) work.
 
