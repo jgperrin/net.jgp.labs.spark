@@ -6,7 +6,7 @@ This project is evolving in a book, creatively named "**[Spark in Action, 2nd ed
 
 If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book at Manning: Spark with Java. Find out more about [Spark in Action, 2nd edition, on the Manning website](https://www.manning.com/books/spark-with-java). The book contains more examples, more explanation, is professionally written and edited.
 
-In the meanwhile, this project is still live, with more raw-level examples, that may (or may not) work.
+Here are the repos with the book examples:
 
 [Chapter 1](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch01) Introduction to Spark and deals with basic ingestion examples.
 
@@ -14,7 +14,7 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 
 [Chapter 3](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch03) The majestic role of the dataframe.
 
-[Chapter 4](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch04) WIP
+[Chapter 4](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch04) All about laziness.
 
 [Chapter 5](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch05) WIP
 
@@ -49,14 +49,16 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 [Chapter 20](https://github.com/jgperrin/net.jgp.books.sparkWithJava.ch20) WIP
 
 
+In the meanwhile, this project is still live, with more raw-level examples, that may (or may not) work.
+
 
 ## Environment
 These labs rely on:
-* Apache Spark 2.3.1 (based on Scala 2.11)
+* Apache Spark 2.3.2 (based on Scala 2.11)
 * Java 8
 
 ## Notes on Branches
-The master branch will always contain the latest version of Spark, currently v2.3.1.
+The master branch will always contain the latest version of Spark, currently v2.3.2.
 
 ## Labs
 A few labs around Apache Spark, exclusively in Java.
