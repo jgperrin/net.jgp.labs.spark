@@ -23,6 +23,7 @@ public class AuthorsAndBooksCountBooksApp {
         .option("header", "true")
         .load(filename);
     authorsDf.show();
+    authorsDf.printSchema();
 
     filename = "data/books.csv";
     Dataset<Row> booksDf = spark.read()
@@ -31,6 +32,7 @@ public class AuthorsAndBooksCountBooksApp {
         .option("header", "true")
         .load(filename);
     booksDf.show();
+    booksDf.printSchema();
 
     Dataset<Row> libraryDf = authorsDf
         .join(
@@ -45,7 +47,9 @@ public class AuthorsAndBooksCountBooksApp {
             authorsDf.col("link"))
         .count();
 
-    libraryDf.show();
+		libraryDf = libraryDf.orderBy(libraryDf.col("count").desc());
+
+	    libraryDf.show();
     libraryDf.printSchema();
   }
 }
