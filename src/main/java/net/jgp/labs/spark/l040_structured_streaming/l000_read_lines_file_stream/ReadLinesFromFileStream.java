@@ -24,7 +24,8 @@ public class ReadLinesFromFileStream {
     log.debug("-> start()");
 
     SparkSession spark = SparkSession.builder()
-        .appName("Read lines over a file stream").master("local")
+        .appName("Read lines over a file stream")
+        .master("local")
         .getOrCreate();
 
     Dataset<Row> df = spark
@@ -32,13 +33,18 @@ public class ReadLinesFromFileStream {
         .format("text")
         .load(StreamingUtils.getInputDirectory());
 
-    StreamingQuery query = df.writeStream().outputMode(OutputMode.Update())
-        .format("console").start();
+    StreamingQuery query = df
+        .writeStream()
+        .outputMode(OutputMode.Update())
+        .format("console")
+        .start();
 
     try {
       query.awaitTermination();
     } catch (StreamingQueryException e) {
-      log.error("Exception while waiting for query to end {}.", e.getMessage(),
+      log.error(
+          "Exception while waiting for query to end {}.",
+          e.getMessage(),
           e);
     }
 

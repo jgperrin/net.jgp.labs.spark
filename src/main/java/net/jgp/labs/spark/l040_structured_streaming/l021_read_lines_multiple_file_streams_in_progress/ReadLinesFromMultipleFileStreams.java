@@ -11,6 +11,12 @@ import org.slf4j.LoggerFactory;
 
 import net.jgp.labs.spark.x.utils.streaming.StreamingUtils;
 
+/**
+ * Note working as it should be...
+ * 
+ * @author jgp
+ *
+ */
 public class ReadLinesFromMultipleFileStreams {
   private static transient Logger log = LoggerFactory.getLogger(
       ReadLinesFromMultipleFileStreams.class);
@@ -24,16 +30,14 @@ public class ReadLinesFromMultipleFileStreams {
   private void start() {
     log.debug("-> start()");
 
-    SparkSession spark = SparkSession.builder().appName(
-        "Read lines over a file stream").master("local")
+    SparkSession spark = SparkSession.builder()
+        .appName("Read lines over a file stream").master("local")
         .getOrCreate();
 
-    // @formatter:off
-		Dataset<Row> df = spark
-				.readStream()
-				.format("text")
-				.load(StreamingUtils.getInputDirectory());
-		// @formatter:on
+    Dataset<Row> df = spark
+        .readStream()
+        .format("text")
+        .load(StreamingUtils.getInputDirectory());
 
     StreamingQuery query = df.writeStream().outputMode(OutputMode.Update())
         .format("console").start();
@@ -41,7 +45,8 @@ public class ReadLinesFromMultipleFileStreams {
     try {
       query.awaitTermination();
     } catch (StreamingQueryException e) {
-      log.error("Exception while waiting for query to end {}.", e.getMessage(),
+      log.error("Exception while waiting for query to end {}.", e
+          .getMessage(),
           e);
     }
 
