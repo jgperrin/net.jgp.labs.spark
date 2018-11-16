@@ -54,11 +54,11 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 
 ## Environment
 These labs rely on:
-* Apache Spark 2.3.2 (based on Scala 2.11)
+* Apache Spark 2.4.0 (based on Scala 2.11)
 * Java 8
 
 ## Notes on Branches
-The master branch will always contain the latest version of Spark, currently v2.3.2.
+The master branch will always contain the latest version of Spark, currently v2.4.0.
 
 ## Labs
 A few labs around Apache Spark, exclusively in Java.
