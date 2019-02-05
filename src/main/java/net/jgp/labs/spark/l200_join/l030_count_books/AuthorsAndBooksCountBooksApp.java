@@ -47,9 +47,9 @@ public class AuthorsAndBooksCountBooksApp {
             authorsDf.col("link"))
         .count();
 
-		libraryDf = libraryDf.orderBy(libraryDf.col("count").desc());
+    libraryDf = libraryDf.orderBy(libraryDf.col("count").desc());
 
-	    libraryDf.show();
+    libraryDf.show();
     libraryDf.printSchema();
   }
 }
