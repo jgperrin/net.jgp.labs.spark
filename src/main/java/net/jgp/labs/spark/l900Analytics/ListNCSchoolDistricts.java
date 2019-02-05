@@ -1,7 +1,7 @@
 /**
  * NC schools by school district analysis.
  */
-package net.jgp.labs.spark.l900_analytics;
+package net.jgp.labs.spark.l900Analytics;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
