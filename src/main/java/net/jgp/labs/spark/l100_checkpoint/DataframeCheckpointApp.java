@@ -11,26 +11,32 @@ import org.apache.spark.sql.SparkSession;
  * 
  * @author jgp
  */
-public class DataframeCheckpoint {
+public class DataframeCheckpointApp {
   public static void main(String[] args) {
-    DataframeCheckpoint app = new DataframeCheckpoint();
+    DataframeCheckpointApp app = new DataframeCheckpointApp();
     app.start();
   }
 
   private void start() {
-    SparkConf conf = new SparkConf().setAppName("Checkpoint").setMaster(
-        "local[*]");
+    SparkConf conf = new SparkConf()
+        .setAppName("Checkpoint")
+        .setMaster("local[*]");
     SparkContext sparkContext = new SparkContext(conf);
-    // We need to specify where Spark will save the checkpoint file. It can be
+
+    // We need to specify where Spark will save the checkpoint file. It can
+    // be
     // an HDFS location.
     sparkContext.setCheckpointDir("/tmp");
-    SparkSession spark = SparkSession.builder().appName("Checkpoint").master(
-        "local[*]").getOrCreate();
+    SparkSession spark = SparkSession.builder()
+        .appName("Checkpoint")
+        .master("local[*]")
+        .getOrCreate();
 
     String filename = "data/tuple-data-file.csv";
-    Dataset<Row> df1 = spark.read().format("csv").option("inferSchema", "true")
-        .option("header", "false")
-        .load(filename);
+    Dataset<Row> df1 =
+        spark.read().format("csv").option("inferSchema", "true")
+            .option("header", "false")
+            .load(filename);
     System.out.println("DF #1 - step #1: simple dump of the dataframe");
     df1.show();
 
