@@ -8,7 +8,7 @@
  <version>${spark.version}</version>
  <properties>
   <scala.version>2.11</scala.version>
-  <spark.version>2.4.1</spark.version>
+  <spark.version>2.4.2</spark.version>
   <postgresql.version>42.1.4</postgresql.version>
  </properties>
 
