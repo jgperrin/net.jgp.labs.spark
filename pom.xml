@@ -6,8 +6,9 @@
 
   <version>${spark.version}</version>
   <properties>
-    <scala.version>2.11</scala.version>
-    <spark.version>2.4.4</spark.version>
+    <scala.version>2.12</scala.version>
+    <spark.version>3.0.0-preview</spark.version>
+    <spark-xml.version>0.7.0</spark-xml.version>
     <postgresql.version>42.1.4</postgresql.version>
     <fhir.version>3.8.0</fhir.version>
   </properties>
@@ -70,7 +71,7 @@
     <dependency>
       <groupId>com.databricks</groupId>
       <artifactId>spark-xml_${scala.version}</artifactId>
-      <version>0.4.1</version>
+      <version>${spark-xml.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>

@@ -2,44 +2,41 @@
 
 Welcome to this project I started several years ago with this simple idea: let's use Spark with Java and not learn all those complex stuff like Hadoop or Scala. I am not that smart anyway...
 
-This project is evolving in a book, creatively named "**[Spark in Action, 2nd edition, with Java](http://jgp.net/sia)**" published by Manning.
-
-If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book at Manning: Spark with Java. Find out more about [Spark in Action, 2nd edition, on the Manning website](http://jgp.net/sia). The book contains more examples, more explanation, is professionally written and edited.
+This project is evolving in a book, creatively named "**[Spark in Action, 2nd edition, with Java](https://www.manning.com/books/spark-in-action-second-edition?a_aid=jgp)**" published by Manning. If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book at Manning. Find out more about [Spark in Action, 2nd edition, on the Manning website](https://www.manning.com/books/spark-in-action-second-edition?a_aid=jgp). The book contains more examples, more explanation, is professionally written and edited. The book also talks about Spark with Python (PySpark) and Scala.
 
 Here are the repos with the book examples:
 
-[Chapter 1](https://github.com/jgperrin/net.jgp.books.spark.ch01) Introduction to Spark and deals with basic ingestion examples.
+[Chapter 1](https://github.com/jgperrin/net.jgp.books.spark.ch01) So, what is Spark, anyway? _An introduction to Spark with a simple ingestion example._
 
-[Chapter 2](https://github.com/jgperrin/net.jgp.books.spark.ch02) Mental model around Spark.
+[Chapter 2](https://github.com/jgperrin/net.jgp.books.spark.ch02) Architecture and flows _Mental model around Spark and exporting data to PostgreSQL from Spark._
 
 [Chapter 3](https://github.com/jgperrin/net.jgp.books.spark.ch03) The majestic role of the dataframe.
 
-[Chapter 4](https://github.com/jgperrin/net.jgp.books.spark.ch04) All about laziness.
+[Chapter 4](https://github.com/jgperrin/net.jgp.books.spark.ch04) Fundamentally lazy.
 
-[Chapter 5](https://github.com/jgperrin/net.jgp.books.spark.ch05) WIP
+[Chapter 5](https://github.com/jgperrin/net.jgp.books.spark.ch05) Building a simple app for deployment _and_ Deploying your simple app.
 
 [Chapter 7](https://github.com/jgperrin/net.jgp.books.spark.ch07) Ingestion from files.
 
 [Chapter 8](https://github.com/jgperrin/net.jgp.books.spark.ch08) Ingestion from databases.
 
-[Chapter 9](https://github.com/jgperrin/net.jgp.books.spark.ch09) Ingestion from anything, right?
+[Chapter 9](https://github.com/jgperrin/net.jgp.books.spark.ch09) Advanced ingestion: finding data sources & building your own.
 
-[Chapter 10](https://github.com/jgperrin/net.jgp.books.spark.ch10) WIP
+[Chapter 10](https://github.com/jgperrin/net.jgp.books.spark.ch10) Ingestion through structured streaming.
 
-[Chapter 11](https://github.com/jgperrin/net.jgp.books.spark.ch11) WIP
+[Chapter 11](https://github.com/jgperrin/net.jgp.books.spark.ch11) Working with Spark SQL.
 
-[Chapter 12](https://github.com/jgperrin/net.jgp.books.spark.ch12) WIP
+[Chapter 12](https://github.com/jgperrin/net.jgp.books.spark.ch12) Transforming your data.
 
-[Chapter 13](https://github.com/jgperrin/net.jgp.books.spark.ch13) WIP
+[Chapter 13](https://github.com/jgperrin/net.jgp.books.spark.ch13) Transforming entire documents.
 
-[Chapter 14](https://github.com/jgperrin/net.jgp.books.spark.ch14) WIP
+[Chapter 14](https://github.com/jgperrin/net.jgp.books.spark.ch14) Extending transformations with user-defined functions (UDFs).
 
-[Chapter 15](https://github.com/jgperrin/net.jgp.books.spark.ch15) WIP
+[Chapter 15](https://github.com/jgperrin/net.jgp.books.spark.ch15) Aggregating your data.
 
-[Chapter 16](https://github.com/jgperrin/net.jgp.books.spark.ch16) WIP
+[Chapter 16](https://github.com/jgperrin/net.jgp.books.spark.ch16) Cache and checkpoint: enhancing Spark’s performances.
 
-[Chapter 17](https://github.com/jgperrin/net.jgp.books.spark.ch17) WIP
-
+[Chapter 17](https://github.com/jgperrin/net.jgp.books.spark.ch17) Exporting data & building full data pipelines.
 
 
 In the meanwhile, this project is still live, with more raw-level examples, that may (or may not) work.
@@ -47,11 +44,11 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 
 ## Environment
 These labs rely on:
-* Apache Spark 2.4.0 (based on Scala 2.11)
+* Apache Spark 3.0.0 preview 1 (based on Scala 2.12)
 * Java 8
 
 ## Notes on Branches
-The master branch will always contain the latest version of Spark, currently v2.4.0.
+The master branch will always contain the latest version of Spark, currently v3.0.0.
 
 ## Labs
 A few labs around Apache Spark, exclusively in Java.
