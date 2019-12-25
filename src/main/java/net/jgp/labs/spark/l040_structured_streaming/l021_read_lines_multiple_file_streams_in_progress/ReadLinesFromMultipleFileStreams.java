@@ -1,5 +1,7 @@
 package net.jgp.labs.spark.l040_structured_streaming.l021_read_lines_multiple_file_streams_in_progress;
 
+import java.util.concurrent.TimeoutException;
+
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -22,12 +24,15 @@ public class ReadLinesFromMultipleFileStreams {
       ReadLinesFromMultipleFileStreams.class);
 
   public static void main(String[] args) {
-    ReadLinesFromMultipleFileStreams app =
-        new ReadLinesFromMultipleFileStreams();
-    app.start();
+    ReadLinesFromMultipleFileStreams app = new ReadLinesFromMultipleFileStreams();
+    try {
+      app.start();
+    } catch (TimeoutException e) {
+      log.error("A timeout exception has occured: {}", e.getMessage());
+    }
   }
 
-  private void start() {
+  private void start() throws TimeoutException {
     log.debug("-> start()");
 
     SparkSession spark = SparkSession.builder()
@@ -39,7 +44,9 @@ public class ReadLinesFromMultipleFileStreams {
         .format("text")
         .load(StreamingUtils.getInputDirectory());
 
-    StreamingQuery query = df.writeStream().outputMode(OutputMode.Update())
+    StreamingQuery query = df
+        .writeStream()
+        .outputMode(OutputMode.Update())
         .format("console").start();
 
     try {
