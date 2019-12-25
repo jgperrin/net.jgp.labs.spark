@@ -44,11 +44,11 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 
 ## Environment
 These labs rely on:
-* Apache Spark 3.0.0 preview 1 (based on Scala 2.12)
+* Apache Spark 3.0.0 preview 2 (based on Scala 2.12)
 * Java 8
 
 ## Notes on Branches
-The master branch will always contain the latest version of Spark, currently v3.0.0.
+The master branch will always contain the latest version of Spark, currently v3.0.0 preview 2.
 
 ## Labs
 A few labs around Apache Spark, exclusively in Java.
@@ -58,7 +58,7 @@ Organization is now in sub packages:
 * l000_ingestion: Data ingestion from various sources.
 * l020\_streaming: Data ingestion via streaming. Special note on [Streaming](src/main/java/net/jgp/labs/spark/l020_streaming/README.md).
 * l050_connection: Connect to Spark.
-* l100_checkpoint: Checkpoint introduced in v2.1.0.
+* l100_checkpoint: Checkpoint introduced in Spark v2.1.0.
 * l150_udf: UDF (User Defined Functions).
 * l200_join: added join examples.
 * l250_map: map (in the context of mapping, not always linked to map/reduce).

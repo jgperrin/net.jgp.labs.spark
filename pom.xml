@@ -7,7 +7,7 @@
   <version>${spark.version}</version>
   <properties>
     <scala.version>2.12</scala.version>
-    <spark.version>3.0.0-preview</spark.version>
+    <spark.version>3.0.0-preview2</spark.version>
     <spark-xml.version>0.7.0</spark-xml.version>
     <postgresql.version>42.1.4</postgresql.version>
     <fhir.version>3.8.0</fhir.version>
