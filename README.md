@@ -44,7 +44,7 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 
 ## Environment
 These labs rely on:
-* Apache Spark 2.4.4 (based on Scala 2.12)
+* Apache Spark 2.4.5 (based on Scala 2.12)
 * Java 8
 
 ## Notes on Branches
