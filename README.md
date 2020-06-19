@@ -44,7 +44,7 @@ In the meanwhile, this project is still live, with more raw-level examples, that
 
 ## Environment
 These labs rely on:
-* Apache Spark 3.0.0 (based on Scala 2.12)
+* Apache Spark v3.0.0 (based on Scala v2.12)
 * Java 8
 
 ## Notes on Branches
@@ -70,5 +70,6 @@ Organization is now in sub packages:
 * l800_concurrency: labs around concurrency access, work in progress.
 * l900_analytics: More complex examples of using Spark for Analytics.
 
+---
 
 If you would like to see more labs, send your request to jgp at jgp dot net or [@jgperrin](https://twitter.com/jgperrin) on Twitter.
