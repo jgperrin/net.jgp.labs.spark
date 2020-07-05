@@ -33,7 +33,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 // $example off$
 
-public class RandomForestRegressorApp {
+public class XgboostApp {
   public static void main(String[] args) {
     SparkSession spark = SparkSession
       .builder()

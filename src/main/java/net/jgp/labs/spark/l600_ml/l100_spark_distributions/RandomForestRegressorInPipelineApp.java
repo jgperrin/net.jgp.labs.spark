@@ -33,7 +33,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 // $example off$
 
-public class RandomForestRegressorApp {
+public class RandomForestRegressorInPipelineApp {
   public static void main(String[] args) {
     SparkSession spark = SparkSession
       .builder()
@@ -41,6 +41,7 @@ public class RandomForestRegressorApp {
       .master("local[*]")
       .getOrCreate();
 
+    // $example on$
     // Load and parse the data file, converting it to a DataFrame.
     Dataset<Row> df = spark.read().format("libsvm")
         //.load("data/mllib/sample_libsvm_data.txt");
