@@ -60,22 +60,11 @@
    </exclusions>
   </dependency>
 
-  <dependency>
-   <groupId>ml.dmlc</groupId>
-   <artifactId>xgboost4j_${scala.version}</artifactId>
-   <version>${xgboost4j.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>ml.dmlc</groupId>
-   <artifactId>xgboost4j-spark_${scala.version}</artifactId>
-   <version>${xgboost4j.version}</version>
-  </dependency>
-
   <!-- DB -->
   <dependency>
    <groupId>mysql</groupId>
    <artifactId>mysql-connector-java</artifactId>
-   <version>6.0.3</version>
+   <version>8.0.16</version>
    <exclusions>
     <exclusion>
      <groupId>org.slf4j</groupId>
@@ -86,6 +75,25 @@
      <artifactId>slf4j-simple</artifactId>
     </exclusion>
    </exclusions>
+  </dependency>
+
+  <!-- ML -->
+  <dependency>
+   <groupId>com.github.fommil.netlib</groupId>
+   <artifactId>all</artifactId>
+   <version>1.1.2</version>
+   <type>pom</type>
+  </dependency>
+
+  <dependency>
+   <groupId>ml.dmlc</groupId>
+   <artifactId>xgboost4j_${scala.version}</artifactId>
+   <version>${xgboost4j.version}</version>
+  </dependency>
+  <dependency>
+   <groupId>ml.dmlc</groupId>
+   <artifactId>xgboost4j-spark_${scala.version}</artifactId>
+   <version>${xgboost4j.version}</version>
   </dependency>
 
   <!-- Other Spark -->
