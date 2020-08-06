@@ -8,10 +8,10 @@ import org.apache.spark.sql.types.StructField;
 import net.jgp.labs.spark.x.utils.DataframeUtils;
 import net.jgp.labs.spark.x.utils.FieldUtils;
 
-public class AuthorsAndBooksMetadataApp {
+public class AddAuthorsAndBooksMetadataApp {
 
   public static void main(String[] args) {
-    AuthorsAndBooksMetadataApp app = new AuthorsAndBooksMetadataApp();
+    AddAuthorsAndBooksMetadataApp app = new AddAuthorsAndBooksMetadataApp();
     app.start();
   }
 

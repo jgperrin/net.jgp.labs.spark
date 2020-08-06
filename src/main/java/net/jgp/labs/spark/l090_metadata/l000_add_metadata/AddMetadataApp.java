@@ -16,17 +16,17 @@ import net.jgp.labs.spark.x.utils.ColumnUtils;
 import net.jgp.labs.spark.x.utils.DataframeUtils;
 import net.jgp.labs.spark.x.utils.FieldUtils;
 
-public class MetadataApp {
+public class AddMetadataApp {
 
   public static void main(String[] args) {
-    MetadataApp app = new MetadataApp();
+    AddMetadataApp app = new AddMetadataApp();
     app.start();
   }
 
   private void start() {
     SparkSession spark = SparkSession.builder()
         .appName("Modifying metadata")
-        .master("local")
+        .master("local[*]")
         .getOrCreate();
 
     String format = "csv";
@@ -35,66 +35,68 @@ public class MetadataApp {
         .option("inferSchema", true)
         .option("header", true)
         .load(filename);
+
+    // Step 1 - Flat read out
+    System.out.println("-------");
+    System.out.println("Step #1 - Flat read out");
+    System.out.println("-------");
     df.show();
     df.printSchema();
-
-    System.out.println("Pass #0");
-    System.out.println("-------");
+    System.out.println("Full read-out of metadata");
     for (StructField field : df.schema().fields()) {
       System.out.println(FieldUtils.explain(field));
     }
 
+    // Step 2 - Add custom metadata
+    System.out.println("-------");
+    System.out.println("Step #2 - Add custom metadata");
+    System.out.println("-------");
+    // Adding x-source, x-format, x-order
     long i = 0;
     for (String colName : df.columns()) {
-      System.out.println("Column: " + colName);
       Column col = col(colName);
-
       Metadata metadata = new MetadataBuilder()
           .putString("x-source", filename)
           .putString("x-format", format)
           .putLong("x-order", i++)
           .build();
-
-      System.out.println("Column: " + col);
+      System.out.println("Metadata added to column: " + col);
       df = df.withColumn(colName, col, metadata);
     }
 
     df.printSchema();
-    System.out.println("Pass #1");
-    System.out.println("-------");
+    System.out.println("Full read-out of metadata");
     for (StructField field : df.schema().fields()) {
       System.out.println(FieldUtils.explain(field));
     }
 
+    // Adding x-process-date
     for (String colName : df.columns()) {
-      System.out.println("Column: " + colName);
       Column col = col(colName);
-
       Metadata metadata = new MetadataBuilder()
           .withMetadata(ColumnUtils.getMetadata(df, colName))
           .putString("x-process-date", new Date().toString())
           .build();
-
-      System.out.println("Column: " + col);
+      System.out.println("Metadata added to column: " + col);
       df = df.withColumn(colName, col, metadata);
     }
-
     df.printSchema();
-    System.out.println("Pass #2");
+    
+    // Step #3 - Adding more metadata
     System.out.println("-------");
-    for (StructField field : df.schema().fields()) {
-      System.out.println(FieldUtils.explain(field));
-    }
+    System.out.println("Pass #3 - Adding more metadata");
+    System.out.println("-------");
 
+    // Adding x-user
     for (String colName : df.columns()) {
       df = DataframeUtils.addMetadata(df, colName, "x-user", "jgp");
     }
-
-    df.printSchema();
-    System.out.println("Pass #3");
-    System.out.println("-------");
+    
+    System.out.println("Full read-out of metadata");
     for (StructField field : df.schema().fields()) {
       System.out.println(FieldUtils.explain(field));
     }
+    df.printSchema();
+
   }
 }
