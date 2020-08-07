@@ -18,7 +18,7 @@ public class AddAuthorsAndBooksMetadataApp {
   private void start() {
     SparkSession spark = SparkSession.builder()
         .appName("Authors and Books metadata")
-        .master("local").getOrCreate();
+        .master("local[*]").getOrCreate();
 
     String filename = "data/authors.csv";
     Dataset<Row> authorsDf = spark.read()
