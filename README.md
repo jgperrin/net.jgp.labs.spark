@@ -1,6 +1,6 @@
 # Some Java examples for Apache Spark
 
-Welcome to this project I started several years ago with this simple idea: let's use Spark with Java and not learn all those complex stuff like Hadoop or Scala. I am not that smart anyway...
+Welcome to this project I started several years ago with this simple idea: let's use Spark in Action, 2e and not learn all those complex stuff like Hadoop or Scala. I am not that smart anyway...
 
 This project is evolving in a book, creatively named "**[Spark in Action, 2nd edition, with Java](https://www.manning.com/books/spark-in-action-second-edition?a_aid=jgp)**" published by Manning. If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book at Manning. Find out more about [Spark in Action, 2nd edition, on the Manning website](https://www.manning.com/books/spark-in-action-second-edition?a_aid=jgp). The book contains more examples, more explanation, is professionally written and edited. The book also talks about Spark with Python (PySpark) and Scala.
 
