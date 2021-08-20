@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l150_udf;
+package net.jgp.labs.spark.l150_udf.l101_x2_multiplier_internal;
 
 import static org.apache.spark.sql.functions.callUDF;
 
@@ -11,7 +11,7 @@ import org.apache.spark.sql.api.java.UDF1;
 import org.apache.spark.sql.types.DataTypes;
 
 public class BasicUdfFromTextFile implements Serializable {
-  private static final long serialVersionUID = 3492970200940899011L;
+  private static final long serialVersionUID = 01500200L;
 
   public static void main(String[] args) {
     System.out.println("Working directory = " + System.getProperty("user.dir"));
