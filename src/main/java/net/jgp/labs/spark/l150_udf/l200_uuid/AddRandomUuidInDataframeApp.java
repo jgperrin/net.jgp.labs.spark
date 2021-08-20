@@ -17,16 +17,16 @@ import net.jgp.labs.spark.x.udf.UuidRandomGenerator;
  * @author jgp
  *
  */
-public class UuidGeneratorApp {
+public class AddRandomUuidInDataframeApp {
 
   public static void main(String[] args) {
-    UuidGeneratorApp app = new UuidGeneratorApp();
+    AddRandomUuidInDataframeApp app = new AddRandomUuidInDataframeApp();
     app.start();
   }
 
   private void start() {
     SparkSession spark = SparkSession.builder()
-        .appName("CSV to Dataset")
+        .appName("Random UUID in dataframe app")
         .master("local[*]")
         .getOrCreate();
 
@@ -43,7 +43,7 @@ public class UuidGeneratorApp {
             .option("header", true)
             .load(filename);
     df = df.withColumn("uuid", callUDF("uuid_random"));
-    df.show();
+    df.show(false);
 
     spark.stop();
   }
