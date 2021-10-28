@@ -1,10 +1,16 @@
 # Some Java examples for Apache Spark
 
-Welcome to this project I started several years ago with this simple idea: let's use Spark in Action, 2e and not learn all those complex stuff like Hadoop or Scala. I am not that smart anyway...
+## Welcome
 
-This project is evolving in a book, creatively named "**[Spark in Action, 2nd edition, with Java](https://www.manning.com/books/spark-in-action-second-edition?a_aid=jgp)**" published by Manning. If you want to know more, and be guided through your Java and Spark learning process, I can only recommend to read the book at Manning. Find out more about [Spark in Action, 2nd edition, on the Manning website](https://www.manning.com/books/spark-in-action-second-edition?a_aid=jgp). The book contains more examples, more explanation, is professionally written and edited. The book also talks about Spark with Python (PySpark) and Scala.
+Welcome to this project I started several years ago with this simple idea: let's use **Apache Spark with Java** and not learn all those complex stuff like Hadoop or Scala. I am not that smart anyway...
 
-Here are the repos with the book examples:
+## A book!
+
+This project has evolved in a book, named "**[Spark in Action, 2nd edition](https://jgp.ai/sia)**" published by Manning Publications. If you want to know more, and be guided through your Spark learning process, I can only recommend to read the book at Manning. Find out more about [Spark in Action, 2nd edition, on the Manning website](https://jgp.ai/sia). The book contains more examples, more explanation, is professionally written and edited. 
+
+Spark in Action, 2e covers using Spark with Java, Python (PySpark), and Scala.
+
+All Spark in Action's examples are on GitHub. Here are the repos with the book examples:
 
 [Chapter 1](https://github.com/jgperrin/net.jgp.books.spark.ch01) So, what is Spark, anyway? _An introduction to Spark with a simple ingestion example._
 
@@ -42,15 +48,20 @@ Here are the repos with the book examples:
 In the meanwhile, this project is still live, with more raw-level examples, that may (or may not) work.
 
 
-## Environment
+## This repo
+
+This project is still live as I add experiments and answers to StackOverflow. I try to keep this project up to date with the version of Spark, but I must admit I only validate for compilations.
+
+### Environment
+
 These labs rely on:
-* Apache Spark v3.1.0 (based on Scala v2.12)
-* Java 8
+* Apache Spark v3.2.0 (based on Scala v2.12).
+* Java 8.
 
-## Notes on Branches
-The master branch will always contain the latest version of Spark, currently v3.1.0.
+### Notes on Branches
+The master branch will always contain the latest version of Spark, currently v3.2.0.
 
-## Labs
+### Labs
 A few labs around Apache Spark, exclusively in Java.
 
 Organization is now in sub packages:
@@ -69,7 +80,11 @@ Organization is now in sub packages:
 * l700_save: saving your results.
 * l800_concurrency: labs around concurrency access, work in progress.
 * l900_analytics: More complex examples of using Spark for Analytics.
+* l900_analytics: More complex examples of using Spark for Analytics.
 
----
+### Contribute
 
-If you would like to see more labs, send your request to jgp at jgp dot net or [@jgperrin](https://twitter.com/jgperrin) on Twitter.
+ * If you would like to see more labs, send your request to jgp at jgp dot net or [@jgperrin](https://twitter.com/jgperrin) on Twitter.
+ * Contact me as well if you want to add some of your examples to this repo (or simply do a pull request).
+ 
+

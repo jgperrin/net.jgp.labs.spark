@@ -17,7 +17,7 @@ public class ArrayToDatasetApp {
   private void start() {
     SparkSession spark = SparkSession.builder()
         .appName("Array to Dataset<String>")
-        .master("local")
+        .master("local[*]")
         .getOrCreate();
 
     String[] l = new String[] { "a", "b", "c", "d" };
