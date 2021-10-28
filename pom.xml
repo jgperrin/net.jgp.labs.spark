@@ -8,7 +8,7 @@
 
  <properties>
   <scala.version>2.12</scala.version>
-  <spark.version>3.0.0</spark.version>
+  <spark.version>3.1.0</spark.version>
   <spark-xml.version>0.7.0</spark-xml.version>
   <postgresql.version>42.1.4</postgresql.version>
   <fhir.version>3.8.0</fhir.version>
