@@ -7,7 +7,8 @@ import org.apache.spark.sql.SparkSession;
 public class CsvWithHeaderToDataset {
 
   public static void main(String[] args) {
-    System.out.println("Working directory = " + System.getProperty("user.dir"));
+    System.out
+        .println("Working directory = " + System.getProperty("user.dir"));
     CsvWithHeaderToDataset app = new CsvWithHeaderToDataset();
     app.start();
   }
@@ -17,8 +18,9 @@ public class CsvWithHeaderToDataset {
         .master("local").getOrCreate();
 
     String filename = "data/csv-q.txt";
-    Dataset<Row> df = spark.read().option("inferSchema", "true").option(
-        "header", "true").csv(filename);
+    Dataset<Row> df = spark.read().option("inferSchema", "true")
+        .option("header", "true")
+        .csv(filename);
     df.show();
     df.printSchema();
 
