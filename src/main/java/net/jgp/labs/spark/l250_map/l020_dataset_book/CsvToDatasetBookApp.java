@@ -46,10 +46,10 @@ public class CsvToDatasetBookApp implements Serializable {
 
     String filename = "data/books.csv";
     Dataset<Row> df = spark.read().format("csv")
-        .option("inferSchema", "true")
-        .option("header", "true")
+        .option("inferSchema", true)
+        .option("header", true)
         .load(filename);
-    df.show();
+    df.show(false);
 
     Dataset<Book> bookDs = df.map(new BookMapper(), Encoders.bean(Book.class));
     bookDs.show();

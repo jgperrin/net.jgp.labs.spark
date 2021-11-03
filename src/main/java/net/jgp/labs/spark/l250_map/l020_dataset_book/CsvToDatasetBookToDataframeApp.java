@@ -47,8 +47,8 @@ public class CsvToDatasetBookToDataframeApp implements Serializable {
 
     String filename = "data/books.csv";
     Dataset<Row> df = spark.read().format("csv")
-        .option("inferSchema", "true")
-        .option("header", "true")
+        .option("inferSchema", true)
+        .option("header", true)
         .load(filename);
     df.show();
 

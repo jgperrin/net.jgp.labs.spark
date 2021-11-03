@@ -1,4 +1,4 @@
-package net.jgp.labs.spark.l250_map.l000;
+package net.jgp.labs.spark.l240_foreach.l000;
 
 import java.io.Serializable;
 

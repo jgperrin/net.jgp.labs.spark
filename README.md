@@ -72,6 +72,7 @@ Organization is now in sub packages:
 * l100_checkpoint: Checkpoint introduced in Spark v2.1.0.
 * l150_udf: UDF (User Defined Functions).
 * l200_join: added join examples.
+* l240_foreach: foreach() on a dataframe.
 * l250_map: map (in the context of mapping, not always linked to map/reduce).
 * l300_reduce: reduce.
 * l400\_industry\_formats: working with industry formats, limited, for now, to HL7 and FHIR.
