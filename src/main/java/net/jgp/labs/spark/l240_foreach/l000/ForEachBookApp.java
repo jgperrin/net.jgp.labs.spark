@@ -15,8 +15,8 @@ public class ForEachBookApp implements Serializable {
 
     @Override
     public void call(Row r) throws Exception {
-      System.out.println(r.getString(2) + " can be bought at " + r.getString(
-          4));
+      System.out.println(
+          r.getString(2) + " can be bought at " + r.getString(4));
     }
   }
 
@@ -26,12 +26,16 @@ public class ForEachBookApp implements Serializable {
   }
 
   private void start() {
-    SparkSession spark = SparkSession.builder().appName("For Each Book").master(
-        "local").getOrCreate();
+    SparkSession spark = SparkSession.builder()
+        .appName("For Each Book")
+        .master("local[*]")
+        .getOrCreate();
 
     String filename = "data/books.csv";
-    Dataset<Row> df = spark.read().format("csv").option("inferSchema", "true")
-        .option("header", "true")
+    Dataset<Row> df = spark.read()
+        .format("csv")
+        .option("inferSchema", true)
+        .option("header", true)
         .load(filename);
     df.show();
 
