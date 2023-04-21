@@ -10,7 +10,7 @@
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <java.version>1.8</java.version>
   <scala.version>2.12</scala.version>
-  <spark.version>3.2.0</spark.version>
+  <spark.version>3.4.0</spark.version>
   <spark-xml.version>0.14.0</spark-xml.version>
   <postgresql.version>42.1.4</postgresql.version>
   <fhir.version>3.8.0</fhir.version>
